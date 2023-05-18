@@ -14,7 +14,7 @@ void readByte(uint8_t byte)
 
 int main()
 {
-    uint8_t test = 2;
+    uint8_t test = 45;
 
     readByte(test);
     return 0;
