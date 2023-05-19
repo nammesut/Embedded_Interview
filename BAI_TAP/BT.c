@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 
-uint8_t PORTA = 0b00100000;
+uint8_t PORTA = 0b00010000;
 
 void readByte(uint8_t byte)
 {
