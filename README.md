@@ -9,3 +9,50 @@
 - Dịch bit sang phải (>>): Bỏ đi n bit bên phải đồng thời dịch sang phải và thêm n bit 0 bên trái.
 - Dịch bit sang trái (<<): Bỏ đi n bit bên trái đồng thời dịch sang trái và thêm n bit 0 bên phải.
 
+Ví dụ:
+```
+Chương trình:
+
+uint8_t PORTA = 0b00010000;
+PORTA = PORTA | (0b10000000 >> 2); 
+
+Kết quả:
+
+10000000 >> 2 = 00100000
+PORTA = 00010000 | 00100000 = 00110000
+```
+
+## Set, clear, toggle, test 1 bit
+- Set 1 bit thứ n lên 1:
+
+```
+output |= (1 << n);
+```
+- Clear 1 bit thứ n về 0:
+
+```
+output &= ~(1 << n);
+```
+- Toggle 1 bit thứ n:
+
+```
+output ^= (1 << n);
+```
+- Test 1 bit là 1 hay 0:
+
+```
+output & (1 << n);
+```
+
+Ví dụ:
+```
+Chương trình:
+
+uint8_t PORTA = 0b00010000;
+PORTA = PORTA | (0b10000000 >> 2); 
+
+Kết quả:
+
+10000000 >> 2 = 00100000
+PORTA = 00010000 | 00100000 = 00110000
+```
