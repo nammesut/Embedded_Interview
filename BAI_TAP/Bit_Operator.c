@@ -46,7 +46,7 @@ int main()
 {
     
     readByte(PORTA);
-    digitalWrite(PIN3, HIGH);
+    digitalWrite(PIN2, HIGH);
     readByte(PORTA);
     return 0;
 }
