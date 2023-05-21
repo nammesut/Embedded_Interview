@@ -56,3 +56,16 @@ Kết quả:
 10000000 >> 3 = 00010000 //~(11101111)
 PORTA = 11101111 & 00010000 = 00000000
 ```
+## Size of Struct
+Ví dụ: Tính kích thước của Struct
+```
+Chương trình:
+
+struct structData
+{
+    int a;
+    char b;
+    
+    
+}
+```
