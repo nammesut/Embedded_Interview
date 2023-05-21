@@ -16,8 +16,11 @@ Chương trình:
 uint8_t PORTA = 0b00010000;
 PORTA = PORTA | (0b10000000 >> 2); 
 
-Kết quả:
+Kết quả: 0b00110000
+```
 
+Giải thích:
+```
 10000000 >> 2 = 00100000
 PORTA = 00010000 | 00100000 = 00110000
 ```
@@ -51,21 +54,109 @@ Chương trình:
 uint8_t PORTA = 0b00010000;
 PORTA = PORTA & ~(0b10000000 >> 3); 
 
-Kết quả:
+Kết quả: 0b00000000
+```
 
+Giải thích:
+```
 10000000 >> 3 = 00010000 //~(11101111)
 PORTA = 11101111 & 00010000 = 00000000
 ```
 ## Size of Struct
-Ví dụ: Tính kích thước của Struct
+- Cách tính kích thước của một struct:
+1. Địa chỉ của struct bắt đầu từ 0.
+2. Địa chỉ của một biến bên trong struct luôn chia hết cho kích thước của biến đó.
+
+Ví dụ 1: Tính kích thước của Struct
 ```
 Chương trình:
 
-struct structData
+struct sizeofStruct
 {
-    int a;
-    char b;
-    
-    
-}
+    char a;
+    int b;
+    double c;
+}str;
+
+printf("%lu \n", sizeof(str));
+
+Kết quả: 16
 ```
+
+Giải thích:
+
+- Trong struct trên kiểu dữ liệu cao nhất là double có 8byte nên dữ liệu sẽ được lưu theo kiểu align 8byte.
+- Biến a là biến đầu nên có địa chỉ là 0.
+
+![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/ecef806a-af14-4b34-9e45-c80f2b955d62)
+
+- Biến b phải chia hết cho 4 và có địa chỉ là 4.
+
+![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/241f9883-5ac6-4fa2-9afb-a4959d6b342e)
+
+- Biến c phải chia hết cho 8 và có địa chỉ là 8.
+
+![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/165806ca-8b12-4bf7-a6e9-36279ec3c522)
+
+Ví dụ 2: Tính kích thước của struct gồm mảng các phần tử
+```
+Chương trình:
+
+struct sizeofStruct
+{
+    uint32_t a[3];
+    uint8_t b[4];
+    uint16_t c[2];
+}str;
+
+printf("%lu \n", sizeof(str));
+
+Kết quả: 20
+```
+
+Giải thích:
+
+- Trong struct trên kiểu dữ liệu cao nhất là uint32_t có 4byte nên dữ liệu sẽ được lưu theo kiểu align 4byte.
+- Kích thước của phần tử a là 12byte:
+
+![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/a9aa7aee-ef4e-42d1-9169-ba4bcd0af062)
+
+- Kích thước của phần tử b là 4byte:
+
+![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/d9e2d3bc-ad58-4a88-9925-388f9262093d)
+
+- Kích thước của phần tử c là 4byte:
+
+![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/b45dad27-2f5f-4adc-849d-994e75ce9fd0)
+
+Ví dụ 3:
+```
+Chương trình:
+
+struct sizeofStruct
+{
+    uint8_t a[3];
+    uint32_t b[2];
+    uint16_t c[2];
+}str;
+
+printf("%lu \n", sizeof(str));
+
+Kết quả: 16
+```
+
+Giải thích:
+
+- Trong struct trên kiểu dữ liệu cao nhất là uint32_t có 4byte nên dữ liệu sẽ được lưu theo kiểu align 4byte.
+- Kích thước của phần tử a là 4byte và dư 1 ô nhớ đệm:
+
+![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/cb1e9202-b9a8-430b-814c-5806f9dbe7b9)
+
+- Lần quét thứ 1 còn dư 1 ô nhớ mà kiểu dữ liệu được lưu là kiểu align 4byte không đủ nên thực hiện quét lần 2 và kích thước của phần tử b là 8byte:
+
+![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/f20ef582-c8e3-4dfe-b114-afe089e56373)
+
+- Kích thước của phần tử c là 4byte:
+
+![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/11a6d444-07ee-44d1-863e-a43848c9d814)
+
