@@ -269,6 +269,6 @@ Kết quả: 10 11 12
 ## Pointer
 Giá trị của pointer sẽ là địa chỉ của một biến khác mà nó trỏ đến.
 
-![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/d75e127f-25ed-4877-8c21-c49a5d4968f6)
+![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/e763a28a-4257-4099-a2f3-3a7513df5ca7)
 
 > Nên khai báo pointer và gán nó giá trị NULL hoặc địa chỉ của biến khác.
