@@ -11,8 +11,6 @@
 
 Ví dụ:
 ```
-Chương trình:
-
 uint8_t PORTA = 0b00010000;
 PORTA = PORTA | (0b10000000 >> 2); 
 
@@ -49,8 +47,6 @@ output & (1 << n);
 
 Ví dụ: Clear bit thứ 3 từ trái sang về 0
 ```
-Chương trình:
-
 uint8_t PORTA = 0b00010000;
 PORTA = PORTA & ~(0b10000000 >> 3); 
 
@@ -69,8 +65,6 @@ PORTA = 11101111 & 00010000 = 00000000
 
 Ví dụ 1: Tính kích thước của Struct
 ```
-Chương trình:
-
 struct sizeofStruct
 {
     char a;
@@ -100,8 +94,6 @@ Giải thích:
 
 Ví dụ 2: Tính kích thước của struct gồm mảng các phần tử
 ```
-Chương trình:
-
 struct sizeofStruct
 {
     uint32_t a[3];
@@ -131,8 +123,6 @@ Giải thích:
 
 Ví dụ 3:
 ```
-Chương trình:
-
 struct sizeofStruct
 {
     uint8_t a[3];
@@ -165,8 +155,6 @@ Kích thước của 1 union được tính bằng kích thước của member l
 
 Ví dụ 1:
 ```
-Chương trình:
-
 union sizeofUnion
 {
     uint8_t a[5];
@@ -182,8 +170,6 @@ Giải thích: Kích thước của member lớn nhất trong union là a với 
 
 Ví dụ 2:
 ```
-Chương trình:
-
 union sizeofUnion
 {
     uint32_t a;
@@ -209,8 +195,6 @@ Ví dụ:
 - File 1:
 
 ```
-Chương trình:
-
 void test(){
     int a = 10;
     printf("%d\n", a++);
@@ -219,8 +203,6 @@ void test(){
 - File 2:
 
 ```
-Chương trình:
-
 extern void test();
 
 test();
@@ -233,8 +215,6 @@ Biến được khởi tạo 1 lần và tồn tại suốt vòng đời chươn
 
 Ví dụ:
 ```
-Chương trình:
-
 void test(){
     static int a = 10;
     printf("%d\n", a++);
@@ -252,8 +232,6 @@ Giống như biến toàn cục nhưng sẽ chỉ có thể được truy cập 
 
 Ví dụ:
 ```
-Chương trình:
-
 static int a = 10;
 
 void test(){
@@ -272,3 +250,61 @@ Giá trị của pointer sẽ là địa chỉ của một biến khác mà nó 
 ![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/e763a28a-4257-4099-a2f3-3a7513df5ca7)
 
 > Nên khai báo pointer và gán nó giá trị NULL hoặc địa chỉ của biến khác.
+
+### Con trỏ hàm
+Ví dụ 1:
+```
+void tong(int a, int b){
+    printf("%d\n", a+b);
+}
+
+void (*ptr)(int, int) = NULL; 
+ptr = &tong;
+/* Or: void (*ptr)(int, int) = &tong */
+
+ptr(6, 10);
+
+Kết quả: 16
+```
+
+Ví dụ 2: Khai báo con trỏ hàm với input parameter là con trỏ hàm khác
+```
+void tong(int a, int b){
+    printf("%d\n", a+b);
+}
+
+void tinhtoan(int a, int b, void (*ptr)(int, int)){
+    ptr(a, b);
+}
+
+tinhtoan(7, 10, tong);
+
+Kết quả: 17
+```
+### Con trỏ void
+Khác với con trỏ thường chỉ lưu được địa chỉ của biến mà nó trỏ đến cùng kiểu dữ liệu với nó, ví dụ:
+```
+int a = 10;
+int *ptr = &a;
+float *p = &a;  //error
+```
+thì con trỏ void có thể lưu tất cả các địa chỉ có kiểu dữ liệu khác nhau nhưng muốn lấy giá trị tại địa chỉ đó phải ép kiểu dữ liệu về đúng kiểu nó trỏ đến
+```
+void tong(int a, int b){
+    printf("%d\n", a+b);
+}
+
+int a = 10;
+double b = 1.2;
+
+void *ptr = &a;
+printf("%d\n", *(int *)ptr);
+
+ptr = &b;
+printf("%f\n", *(double *)ptr);
+
+ptr = &tong;
+((void (*)(int, int))ptr)(12, 10);
+
+Kết quả: 10 1.200000 22
+```
