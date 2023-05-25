@@ -160,8 +160,7 @@ Giải thích:
 
 ![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/11a6d444-07ee-44d1-863e-a43848c9d814)
 
-## Union
-### Size of Union
+## Size of Union
 Kích thước của 1 union được tính bằng kích thước của member lớn nhất trong nó và các member trong union sẽ dùng chung 1 địa chỉ.
 
 Ví dụ 1:
@@ -201,6 +200,70 @@ Giải thích: Kích thước của member lớn nhất trong union là char v�
 
 ![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/70e0e960-33a2-481e-ace7-a80df82c08f4)
 
+## Từ khóa Extern và biến Static
+### Extern
+- Là tham chiếu của một biến, hàm cùng tên nào đó và đã được định nghĩa bên ngoài.
+- Biến được tham chiếu phải được khai báo toàn cục và có thể nằm trong một file khác.
 
+Ví dụ:
+- File 1:
 
+```
+Chương trình:
+
+void test(){
+    int a = 10;
+    printf("%d\n", a++);
+}
+```
+- File 2:
+
+```
+Chương trình:
+
+extern void test();
+
+test();
+test();
+
+Kết quả: 10 11
+```
+### Static cục bộ
+Biến được khởi tạo 1 lần và tồn tại suốt vòng đời chương trình và giá trị không bị mất đi ngay cả khi kết thúc hàm.
+
+Ví dụ:
+```
+Chương trình:
+
+void test(){
+    static int a = 10;
+    printf("%d\n", a++);
+}
+
+test();
+test();
+test();
+
+Kết quả: 10 11 12
+```
+
+### Static toàn cục
+Giống như biến toàn cục nhưng sẽ chỉ có thể được truy cập và sử dụng trong File khai báo nó, các File khác không thể truy cập được kể cả dùng từ khóa extern. 
+
+Ví dụ:
+```
+Chương trình:
+
+static int a = 10;
+
+void test(){
+    printf("%d\n", a++);
+}
+
+test();
+test();
+test();
+
+Kết quả: 10 11 12
+```
 
