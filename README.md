@@ -1,4 +1,4 @@
-# Embedded Interview T5
+# Embedded Interview
 ## Thao tác Bit
 - AND (&): Ngõ ra là 1 nếu 2 bit đều là 1, một trong 2 bit bằng 0 là 0.
 - OR (|): Ngõ ra là 1 nếu một trong 2 bit là 1, 2 bit đều bằng 0 là 0.
