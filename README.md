@@ -195,8 +195,8 @@ Ví dụ:
 - File 1:
 
 ```
+static int a = 10;
 void test(){
-    int a = 10;
     printf("%d\n", a++);
 }
 ```
