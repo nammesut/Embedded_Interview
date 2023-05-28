@@ -208,7 +208,7 @@ Giải thích: Kích thước của member lớn nhất trong union là char v�
 Ví dụ:
 - File 1:
 
-```
+```ruby
 static int a = 10;
 void test(){
     printf("%d\n", a++);
@@ -216,7 +216,7 @@ void test(){
 ```
 - File 2:
 
-```
+```ruby
 extern void test();
 
 test();
@@ -228,7 +228,7 @@ Kết quả: 10 11
 Biến được khởi tạo 1 lần và tồn tại suốt vòng đời chương trình và giá trị không bị mất đi ngay cả khi kết thúc hàm.
 
 Ví dụ:
-```
+```ruby
 void test(){
     static int a = 10;
     printf("%d\n", a++);
@@ -245,7 +245,7 @@ Kết quả: 10 11 12
 Giống như biến toàn cục nhưng sẽ chỉ có thể được truy cập và sử dụng trong File khai báo nó, các File khác không thể truy cập được kể cả dùng từ khóa extern. 
 
 Ví dụ:
-```
+```ruby
 static int a = 10;
 
 void test(){
