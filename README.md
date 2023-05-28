@@ -74,7 +74,7 @@ PORTA = 11101111 & 00010000 = 00000000
 2. Địa chỉ của một biến bên trong struct luôn chia hết cho kích thước của biến đó.
 
 Ví dụ 1: Tính kích thước của Struct
-```
+```ruby
 struct sizeofStruct
 {
     char a;
@@ -103,7 +103,7 @@ Giải thích:
 ![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/165806ca-8b12-4bf7-a6e9-36279ec3c522)
 
 Ví dụ 2: Tính kích thước của struct gồm mảng các phần tử
-```
+```ruby
 struct sizeofStruct
 {
     uint32_t a[3];
@@ -132,7 +132,7 @@ Giải thích:
 ![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/b45dad27-2f5f-4adc-849d-994e75ce9fd0)
 
 Ví dụ 3:
-```
+```ruby
 struct sizeofStruct
 {
     uint8_t a[3];
