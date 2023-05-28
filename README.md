@@ -67,6 +67,8 @@ Quy trình  biên dịch là quá trình chuyển đổi từ ngôn ngữ bậc 
 - Đặc điểm vùng nhớ:
   - Stack: quản lý bởi HĐH, dữ liệu sẽ tự động hủy khi hàm thực hiện xong.
   - Heap: quản lý bởi coder, dữ liệu sẽ không bị hủy khi hàm thực hiện xong, phải tự tay hủy vùng nhớ bằng câu lệnh free (trong C), và delete hoặc delete [] (trong C++), nếu không sẽ xảy ra hiện tượng rò rỉ bộ nhớ. 
+ 
+https://github.com/nammesut/Embedded_Interview/blob/209d825ae2fb2543a650ffca9017156878c1c013/ON_TAP/Phan_vung_nho.c#L1-L12
     
 > Bộ nhớ stack là cố định nên không sử dụng lưu trữ quá nhiều sẽ tràn bộ nhớ, vd: hàm đệ quy vô hạn.
 
@@ -344,8 +346,13 @@ Kết quả: 10 11 12
 <details>
     <summary>Pointer</summary>
     
-### Pointer
-Giá trị của pointer sẽ là địa chỉ của một biến khác mà nó trỏ đến.
+### Con trỏ NULL
+- Giá trị của pointer sẽ là địa chỉ của một biến khác mà nó trỏ đến.
+- Null là một giá trị đặc biệt, điều đó có nghĩa là con trỏ đó chưa trỏ đến địa chỉ nào cả.
+    
+```ruby
+int *ptr = NULL;
+```
 
 ![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/e763a28a-4257-4099-a2f3-3a7513df5ca7)
 
@@ -408,4 +415,8 @@ ptr = &tong;
 
 Kết quả: 10 1.200000 22
 ```
+    
+### Pointer to pointer
+Pointer to pointer là một loại con trỏ dùng để lưu trữ địa chỉ của biến con trỏ.
+
 </details>
