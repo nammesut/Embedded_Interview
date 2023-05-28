@@ -1,7 +1,86 @@
 # Embedded Interview
 <details>
-    <summary>Thao tác bit</summary>
+    <summary>Compiler</summary>
+Quy trình  biên dịch là quá trình chuyển đổi từ ngôn ngữ bậc cao (C/C++, Pascal, Java, C#…) sang ngôn ngữ đích (ngôn ngữ máy) để máy tính có thể hiểu và thực thi. Quá trình được chia ra làm 4 giai đoạn chính:
+
+![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/cb11786e-5c5d-4242-ad65-aed8faf26c21)
     
+1. Giai đoàn tiền xử lý (Pre-processor)
+   - Nhận mã nguồn
+   - Xóa bỏ tất cả chú thích, comments của chương trình
+   - Các chỉ thị #include và #define cũng sẽ được gọi và thay thế vào chương trình.
+
+2. Giai đoạn dịch NNBC sang Asembly (Compiler)
+   - Phân tích cú pháp (syntax) của mã nguồn NNBC
+   - Chuyển chúng sang dạng mã Assembly là một ngôn ngữ bậc thấp (hợp ngữ) gần với tập lệnh của bộ vi xử lý.
+
+3. Giai đoạn dịch asembly sang ngôn ngữ máy (Asembler)
+   - Dich chương trình => Sang mã máy 0 và 1
+   - Một tệp mã máy (.obj) sinh ra trong hệ thống sau đó.
+
+4. Giai đoạn liên kết (Linker)
+   - Liên kết (file .c hoặc file thư viện .lib) lại với nhau để tạo thành chương trình đích duy nhất. Còn gọi là đóng gói.
+
+> Tất cả các đối tượng được liên kết lại với nhau thành một chương trình có thể thực thi được (executable hay .exe) thống nhất.
+
+</details>
+<details>
+    <summary>Phân vùng nhớ</summary>
+
+### Các vùng nhớ cơ bản
+
+![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/afd63e5d-7b2b-498a-bc7b-ecaff73d3b60)
+
+- Text:
+  - Quyền truy cập chỉ Read và nó chứa lệnh để thực thi nên tránh sửa đổi instruction.
+  - Chứa khai báo hằng số (biến const) trong chương trình (.rodata)
+    
+- Data (initialized data):
+  - Quyền truy cập là read-write.
+  - Chứa biến toàn cục or biến static với giá trị khởi tạo khác không.
+  - Được giải phóng khi kết thúc chương trình.
+    
+- bss (uninitialized data):
+  - Quyền truy cập là read-write.
+  - Chứa biến toàn cục or biến static với giá trị khởi tạo bằng không hoặc không khởi tạo.
+  - Được giải phóng khi kết thúc chương trình.
+    
+- Stack:
+  - Quyền truy cập là read-write.
+  - Được sử dụng cấp phát cho biến local, input parameter của hàm,…
+  - Được giải phóng khi ra khỏi block code/hàm.
+
+- Heap:
+  - Quyền truy cập là read-write.
+  - Được sử dụng để cấp phát bộ nhớ động như: Malloc, Calloc, …
+  - Được giải phóng khi gọi hàm free,…
+
+### Stack và Heap
+- Đều là vùng nhớ được tạo ra và lưu trữ trong RAM khi chương trình được thực thi.
+  - Stack: lưu trữ biến cục bộ, tham số truyền vào hàm... Truy cập vào bộ nhớ này rất nhanh
+  - Heap: lưu trữ vùng nhớ cho những biến con trỏ được cấp phát động bởi hàm malloc - calloc - realloc.
+    
+- Kích thước vùng nhớ:
+  - Stack: cố định, tùy thuộc vào HĐH, ví dụ HĐH Windows là 1 MB, HĐH Linux là 8 MB (lưu ý là con số có thể khác tùy thuộc vào kiến trúc HĐH của bạn).
+  - Heap: không cố định, có thể tăng giảm do đó đáp ứng được nhu cầu lưu trữ dữ liệu của chương trình.
+    
+- Đặc điểm vùng nhớ:
+  - Stack: quản lý bởi HĐH, dữ liệu sẽ tự động hủy khi hàm thực hiện xong.
+  - Heap: quản lý bởi coder, dữ liệu sẽ không bị hủy khi hàm thực hiện xong, phải tự tay hủy vùng nhớ bằng câu lệnh free (trong C), và delete hoặc delete [] (trong C++), nếu không sẽ xảy ra hiện tượng rò rỉ bộ nhớ. 
+    
+> Bộ nhớ stack là cố định nên không sử dụng lưu trữ quá nhiều sẽ tràn bộ nhớ, vd: hàm đệ quy vô hạn.
+
+> Liên tục cấp phát vùng nhớ Heap mà không giải phóng sẽ bị tràn bộ nhớ or khởi tạo vùng nhớ quá lớn mà Heap không thể lưu được thì sẽ bị lỗi khởi tạo. 
+
+</details>
+<details>
+    <summary>Macro</summary>
+
+</details>
+
+<details>
+    <summary>Thao tác bit</summary>
+
 - AND (&): Ngõ ra là 1 nếu 2 bit đều là 1, một trong 2 bit bằng 0 là 0.
 - OR (|): Ngõ ra là 1 nếu một trong 2 bit là 1, 2 bit đều bằng 0 là 0.
 - XOR (^): Ngõ ra là 1 nếu tổng số bit 1 là lẻ, ngược lại.
@@ -164,35 +243,11 @@ Giải thích:
 Kích thước của 1 union được tính bằng kích thước của member lớn nhất trong nó và các member trong union sẽ dùng chung 1 địa chỉ.
 
 Ví dụ 1:
-```ruby
-union sizeofUnion
-{
-    uint8_t a[5];
-    uint8_t b[3];
-}uni;
+https://github.com/nammesut/Embedded_Interview/blob/38703243ed84673125d71a9d3612eb018e1cb7e9/ON_TAP/Size_of_Struct_Union.c#L25-L36
 
-printf("%lu \n", sizeof(uni));
-
-Kết quả: 5
-```
-
-Giải thích: Kích thước của member lớn nhất trong union là a với 5 phần tử mỗi phần tử 1byte nên size của union trên là 5bytes.
-
-Ví dụ 2:
-```ruby
-union sizeofUnion
-{
-    uint32_t a;
-    uint8_t b[17];
-    uint64_t c;
-}uni;
-
-printf("%lu \n", sizeof(uni));
-
-Kết quả: 24
-```
-
-Giải thích: Kích thước của member lớn nhất trong union là char với 17 phần tử mỗi phần tử 1byte là 17bytes nhưng kiểu dữ liệu lớn nhất là double 8bytes nên khi được lưu trên bộ nhớ sẽ được sắp xếp theo kiểu align 8bytes (ví dụ ảnh dưới).
+Giải thích: 
+- Trong Union 1: Kích thước của member lớn nhất trong union là a với 5 phần tử mỗi phần tử 1byte nên size của union trên là 5bytes.
+- Trong Union 2: Kích thước của member lớn nhất trong union là char với 17 phần tử mỗi phần tử 1byte là 17bytes nhưng kiểu dữ liệu lớn nhất là double 8bytes nên khi được lưu trên bộ nhớ sẽ được sắp xếp theo kiểu align 8bytes (ví dụ ảnh dưới).
 
 ![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/70e0e960-33a2-481e-ace7-a80df82c08f4)
 
@@ -272,7 +327,7 @@ Giá trị của pointer sẽ là địa chỉ của một biến khác mà nó 
 
 ### Con trỏ hàm
 Ví dụ 1:
-```
+```ruby
 void tong(int a, int b){
     printf("%d\n", a+b);
 }
@@ -287,7 +342,7 @@ Kết quả: 16
 ```
 
 Ví dụ 2: Khai báo con trỏ hàm với input parameter là con trỏ hàm khác
-```
+```ruby
 void tong(int a, int b){
     printf("%d\n", a+b);
 }
@@ -302,13 +357,13 @@ Kết quả: 17
 ```
 ### Con trỏ void
 Khác với con trỏ thường chỉ lưu được địa chỉ của biến mà nó trỏ đến cùng kiểu dữ liệu với nó, ví dụ:
-```
+```ruby
 int a = 10;
 int *ptr = &a;
 float *p = &a;  //error
 ```
 thì con trỏ void có thể lưu tất cả các địa chỉ có kiểu dữ liệu khác nhau nhưng muốn lấy giá trị tại địa chỉ đó phải ép kiểu dữ liệu về đúng kiểu nó trỏ đến
-```
+```ruby
 void tong(int a, int b){
     printf("%d\n", a+b);
 }
