@@ -87,6 +87,17 @@ Ví dụ: Tạo macro
 https://github.com/nammesut/Embedded_Interview/blob/32289c9fc1395c62686a76bbab516c14f951578d/ON_TAP/Macro.c#L3-L27
 ### Hàm bình thường
 Khi thấy hàm được gọi, compiler sẽ phải lưu con trỏ chương trình Program Counter hiện tại vào stack; chuyển PC tới hàm được gọi, thực hiện hàm đó xong và lấy kết quả trả về; sau đó quay lại vị trí ban đầu trong stack trước khi gọi hàm và tiếp tục thực hiện chương trình.
+    
+```ruby
+int max(int a, int b){
+    return (a>b)?a:b;
+}
+    
+int main(){
+    printf("Max a va b: %d\n", max(3, 6));
+    return 0;
+}
+```
 
 ![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/cad85aed-99c1-48c8-9c14-bca7e5cf9e49)
 
