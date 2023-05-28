@@ -82,8 +82,15 @@ Quy trình  biên dịch là quá trình chuyển đổi từ ngôn ngữ bậc 
 ### Inline
 - Inline về cơ bản nó sẽ không tạo ra lời gọi hàm mà chèn trực tiếp mã vào nơi hàm được gọi => tăng size (cụ thể là của file thực thi). 
 - Khi được nạp vào ram, mỗi hàm sẽ có địa chỉ nhất định, khi gọi thì cpu sẽ jump tới địa chỉ đó. Viết inline thì compiler sẽ chèn luôn code của hàm đó vào, thay vì chèn địa chỉ, cpu chỉ chạy một mạch làm chương trình chạy nhanh.
+
+Ví dụ: Tạo macro
+https://github.com/nammesut/Embedded_Interview/blob/32289c9fc1395c62686a76bbab516c14f951578d/ON_TAP/Macro.c#L3-L27
 ### Hàm bình thường
 Khi thấy hàm được gọi, compiler sẽ phải lưu con trỏ chương trình Program Counter hiện tại vào stack; chuyển PC tới hàm được gọi, thực hiện hàm đó xong và lấy kết quả trả về; sau đó quay lại vị trí ban đầu trong stack trước khi gọi hàm và tiếp tục thực hiện chương trình.
+
+![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/cad85aed-99c1-48c8-9c14-bca7e5cf9e49)
+
+Như ví dụ trên ảnh là VĐK 8bit, thì khi chương trình chạy 0x00 sẽ tạo ra PC có nhiệm vụ đếm chương trình lên 1bit đến 0x07 sẽ quay lại do có hàm while(1). Còn khi chương trình đang chạy tới 0x03 gặp 1 hàm có địa chỉ 0xc1, chương trình sẽ chạy hết 0x03 đồng thời Stack pointer sẽ lưu địa chỉ 0x04 và PC sẽ nhảy đến địa chỉ hàm 0xc1, đếm đến hết 0xc7 sẽ truy cập vào satck pointer lấy địa chỉ 0x04 gán cho PC và đếm từ 0x04 đến 0x07.
 </details>
 
 <details>
