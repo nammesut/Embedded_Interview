@@ -1,7 +1,62 @@
 # Embedded Interview
 <details>
-    <summary>Thao tác bit</summary>
+    <summary>Compiler</summary>
+Quy trình  biên dịch là quá trình chuyển đổi từ ngôn ngữ bậc cao (C/C++, Pascal, Java, C#…) sang ngôn ngữ đích (ngôn ngữ máy) để máy tính có thể hiểu và thực thi. Quá trình được chia ra làm 4 giai đoạn chính:
+
+![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/cb11786e-5c5d-4242-ad65-aed8faf26c21)
     
+1. Giai đoàn tiền xử lý (Pre-processor)
+   - Nhận mã nguồn
+   - Xóa bỏ tất cả chú thích, comments của chương trình
+   - Các chỉ thị #include và #define cũng sẽ được gọi và thay thế vào chương trình.
+
+2. Giai đoạn dịch NNBC sang Asembly (Compiler)
+   - Phân tích cú pháp (syntax) của mã nguồn NNBC
+   - Chuyển chúng sang dạng mã Assembly là một ngôn ngữ bậc thấp (hợp ngữ) gần với tập lệnh của bộ vi xử lý.
+
+3. Giai đoạn dịch asembly sang ngôn ngữ máy (Asembler)
+   - Dich chương trình => Sang mã máy 0 và 1
+   - Một tệp mã máy (.obj) sinh ra trong hệ thống sau đó.
+
+4. Giai đoạn liên kết (Linker)
+   - Liên kết (file .c hoặc file thư viện .lib) lại với nhau để tạo thành chương trình đích duy nhất. Còn gọi là đóng gói.
+
+> Tất cả các đối tượng được liên kết lại với nhau thành một chương trình có thể thực thi được (executable hay .exe) thống nhất.
+
+</details>
+<details>
+    <summary>Phân vùng nhớ</summary>
+ 
+![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/afd63e5d-7b2b-498a-bc7b-ecaff73d3b60)
+
+- Text:
+  - Quyền truy cập chỉ Read và nó chứa lệnh để thực thi nên tránh sửa đổi instruction.
+  - Chứa khai báo hằng số (biến const) trong chương trình (.rodata)
+    
+- Data (initialized data):
+  - Quyền truy cập là read-write.
+  - Chứa biến toàn cục or biến static với giá trị khởi tạo khác không.
+  - Được giải phóng khi kết thúc chương trình.
+    
+- bss (uninitialized data):
+  - Quyền truy cập là read-write.
+  - Chứa biến toàn cục or biến static với giá trị khởi tạo bằng không hoặc không khởi tạo.
+  - Được giải phóng khi kết thúc chương trình.
+    
+- Stack:
+  - Quyền truy cập là read-write.
+  - Được sử dụng cấp phát cho biến local, input parameter của hàm,…
+  - Được giải phóng khi ra khỏi block code/hàm.
+
+- Heap:
+  - Quyền truy cập là read-write.
+  - Được sử dụng để cấp phát bộ nhớ động như: Malloc, Calloc, …
+  - Được giải phóng khi gọi hàm free,…
+
+</details>
+<details>
+    <summary>Thao tác bit</summary>
+
 - AND (&): Ngõ ra là 1 nếu 2 bit đều là 1, một trong 2 bit bằng 0 là 0.
 - OR (|): Ngõ ra là 1 nếu một trong 2 bit là 1, 2 bit đều bằng 0 là 0.
 - XOR (^): Ngõ ra là 1 nếu tổng số bit 1 là lẻ, ngược lại.
