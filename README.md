@@ -9,6 +9,9 @@
 - Dịch bit sang phải (>>): Bỏ đi n bit bên phải đồng thời dịch sang phải và thêm n bit 0 bên trái.
 - Dịch bit sang trái (<<): Bỏ đi n bit bên trái đồng thời dịch sang trái và thêm n bit 0 bên phải.
 
+Ví dụ: Hiển thị giá trị PORTA dưới dạng nhị phân.
+https://github.com/nammesut/Embedded_Interview/blob/e1c9b211326006765745b7dca61a079875b06b6b/ON_TAP/Bit_Operator.c#L4-L16
+
 Ví dụ:
 ```
 uint8_t PORTA = 0b00010000;
