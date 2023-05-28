@@ -24,5 +24,7 @@ struct sizeofStruct3
 
 int main()
 {
+    printf("%lu \n", sizeof(str1));  
+    printf("%lu \n", sizeof(str2));  
     printf("%lu \n", sizeof(str3));  
 }
