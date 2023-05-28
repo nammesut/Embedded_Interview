@@ -348,13 +348,14 @@ Kết quả: 10 11 12
     
 ### Con trỏ NULL
 - Giá trị của pointer sẽ là địa chỉ của một biến khác mà nó trỏ đến.
+
+![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/e763a28a-4257-4099-a2f3-3a7513df5ca7)
+
 - Null là một giá trị đặc biệt, điều đó có nghĩa là con trỏ đó chưa trỏ đến địa chỉ nào cả.
     
 ```ruby
 int *ptr = NULL;
 ```
-
-![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/e763a28a-4257-4099-a2f3-3a7513df5ca7)
 
 > Nên khai báo pointer và gán nó giá trị NULL hoặc địa chỉ của biến khác.
 
@@ -418,5 +419,6 @@ Kết quả: 10 1.200000 22
     
 ### Pointer to pointer
 Pointer to pointer là một loại con trỏ dùng để lưu trữ địa chỉ của biến con trỏ.
-
+    
+https://github.com/nammesut/Embedded_Interview/blob/67e94c45c5a57d27f6937951e9b1b63226c22dbe/ON_TAP/Pointer.c#L34-L40
 </details>
