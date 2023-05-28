@@ -164,35 +164,11 @@ Giải thích:
 Kích thước của 1 union được tính bằng kích thước của member lớn nhất trong nó và các member trong union sẽ dùng chung 1 địa chỉ.
 
 Ví dụ 1:
-```ruby
-union sizeofUnion
-{
-    uint8_t a[5];
-    uint8_t b[3];
-}uni;
+https://github.com/nammesut/Embedded_Interview/blob/38703243ed84673125d71a9d3612eb018e1cb7e9/ON_TAP/Size_of_Struct_Union.c#L25-L36
 
-printf("%lu \n", sizeof(uni));
-
-Kết quả: 5
-```
-
-Giải thích: Kích thước của member lớn nhất trong union là a với 5 phần tử mỗi phần tử 1byte nên size của union trên là 5bytes.
-
-Ví dụ 2:
-```ruby
-union sizeofUnion
-{
-    uint32_t a;
-    uint8_t b[17];
-    uint64_t c;
-}uni;
-
-printf("%lu \n", sizeof(uni));
-
-Kết quả: 24
-```
-
-Giải thích: Kích thước của member lớn nhất trong union là char với 17 phần tử mỗi phần tử 1byte là 17bytes nhưng kiểu dữ liệu lớn nhất là double 8bytes nên khi được lưu trên bộ nhớ sẽ được sắp xếp theo kiểu align 8bytes (ví dụ ảnh dưới).
+Giải thích: 
+- Trong Union 1: Kích thước của member lớn nhất trong union là a với 5 phần tử mỗi phần tử 1byte nên size của union trên là 5bytes.
+- Trng Union 2: Kích thước của member lớn nhất trong union là char với 17 phần tử mỗi phần tử 1byte là 17bytes nhưng kiểu dữ liệu lớn nhất là double 8bytes nên khi được lưu trên bộ nhớ sẽ được sắp xếp theo kiểu align 8bytes (ví dụ ảnh dưới).
 
 ![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/70e0e960-33a2-481e-ace7-a80df82c08f4)
 
