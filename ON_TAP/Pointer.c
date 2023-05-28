@@ -30,4 +30,12 @@ int main()
 
     ptr_void = &tong;
     ((void (*)(int, int))ptr_void)(12, 10);
+
+    int x = 10;
+    int *ptr1 = &x;
+    int **ptp = &ptr1;
+
+    printf("Dia chi cua x: %x\n", &x);
+    printf("Gia tri cua ptr1: %x\n", ptr1);
+    printf("Dia chi cua ptp: %x\n", *ptp);
 }
