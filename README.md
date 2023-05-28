@@ -26,7 +26,9 @@ Quy trình  biên dịch là quá trình chuyển đổi từ ngôn ngữ bậc 
 </details>
 <details>
     <summary>Phân vùng nhớ</summary>
- 
+
+### Các vùng nhớ cơ bản
+
 ![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/afd63e5d-7b2b-498a-bc7b-ecaff73d3b60)
 
 - Text:
@@ -52,6 +54,24 @@ Quy trình  biên dịch là quá trình chuyển đổi từ ngôn ngữ bậc 
   - Quyền truy cập là read-write.
   - Được sử dụng để cấp phát bộ nhớ động như: Malloc, Calloc, …
   - Được giải phóng khi gọi hàm free,…
+
+### Stack và Heap
+- Đều là vùng nhớ được tạo ra và lưu trữ trong RAM khi chương trình được thực thi.
+  - Stack: lưu trữ biến cục bộ, tham số truyền vào hàm... Truy cập vào bộ nhớ này rất nhanh
+  - Heap: lưu trữ vùng nhớ cho những biến con trỏ được cấp phát động bởi hàm malloc - calloc - realloc.
+    
+- Kích thước vùng nhớ:
+  - Stack: cố định, tùy thuộc vào HĐH, ví dụ HĐH Windows là 1 MB, HĐH Linux là 8 MB (lưu ý là con số có thể khác tùy thuộc vào kiến trúc HĐH của bạn).
+  - Heap: không cố định, có thể tăng giảm do đó đáp ứng được nhu cầu lưu trữ dữ liệu của chương trình.
+    
+- Đặc điểm vùng nhớ:
+  - Stack: quản lý bởi HĐH, dữ liệu sẽ tự động hủy khi hàm thực hiện xong.
+  - Heap: quản lý bởi coder, dữ liệu sẽ không bị hủy khi hàm thực hiện xong, phải tự tay hủy vùng nhớ bằng câu lệnh free (trong C), và delete hoặc delete [] (trong C++), nếu không sẽ xảy ra hiện tượng rò rỉ bộ nhớ. 
+    
+> Bộ nhớ stack là cố định nên không sử dụng lưu trữ quá nhiều sẽ tràn bộ nhớ, vd: hàm đệ quy vô hạn.
+
+> Liên tục cấp phát vùng nhớ Heap mà không giải phóng sẽ bị tràn bộ nhớ or khởi tạo vùng nhớ quá lớn mà Heap không thể lưu được thì sẽ bị lỗi khởi tạo. 
+
 
 </details>
 <details>
