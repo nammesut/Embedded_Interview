@@ -74,7 +74,7 @@ PORTA = 11101111 & 00010000 = 00000000
 2. Địa chỉ của một biến bên trong struct luôn chia hết cho kích thước của biến đó.
 
 Ví dụ 1: Tính kích thước của Struct
-```
+```ruby
 struct sizeofStruct
 {
     char a;
@@ -103,7 +103,7 @@ Giải thích:
 ![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/165806ca-8b12-4bf7-a6e9-36279ec3c522)
 
 Ví dụ 2: Tính kích thước của struct gồm mảng các phần tử
-```
+```ruby
 struct sizeofStruct
 {
     uint32_t a[3];
@@ -132,7 +132,7 @@ Giải thích:
 ![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/b45dad27-2f5f-4adc-849d-994e75ce9fd0)
 
 Ví dụ 3:
-```
+```ruby
 struct sizeofStruct
 {
     uint8_t a[3];
@@ -164,7 +164,7 @@ Giải thích:
 Kích thước của 1 union được tính bằng kích thước của member lớn nhất trong nó và các member trong union sẽ dùng chung 1 địa chỉ.
 
 Ví dụ 1:
-```
+```ruby
 union sizeofUnion
 {
     uint8_t a[5];
@@ -179,7 +179,7 @@ Kết quả: 5
 Giải thích: Kích thước của member lớn nhất trong union là a với 5 phần tử mỗi phần tử 1byte nên size của union trên là 5bytes.
 
 Ví dụ 2:
-```
+```ruby
 union sizeofUnion
 {
     uint32_t a;
@@ -208,7 +208,7 @@ Giải thích: Kích thước của member lớn nhất trong union là char v�
 Ví dụ:
 - File 1:
 
-```
+```ruby
 static int a = 10;
 void test(){
     printf("%d\n", a++);
@@ -216,7 +216,7 @@ void test(){
 ```
 - File 2:
 
-```
+```ruby
 extern void test();
 
 test();
@@ -228,7 +228,7 @@ Kết quả: 10 11
 Biến được khởi tạo 1 lần và tồn tại suốt vòng đời chương trình và giá trị không bị mất đi ngay cả khi kết thúc hàm.
 
 Ví dụ:
-```
+```ruby
 void test(){
     static int a = 10;
     printf("%d\n", a++);
@@ -245,7 +245,7 @@ Kết quả: 10 11 12
 Giống như biến toàn cục nhưng sẽ chỉ có thể được truy cập và sử dụng trong File khai báo nó, các File khác không thể truy cập được kể cả dùng từ khóa extern. 
 
 Ví dụ:
-```
+```ruby
 static int a = 10;
 
 void test(){
