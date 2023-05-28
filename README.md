@@ -72,8 +72,12 @@ Quy trình  biên dịch là quá trình chuyển đổi từ ngôn ngữ bậc 
 
 > Liên tục cấp phát vùng nhớ Heap mà không giải phóng sẽ bị tràn bộ nhớ or khởi tạo vùng nhớ quá lớn mà Heap không thể lưu được thì sẽ bị lỗi khởi tạo. 
 
+</details>
+<details>
+    <summary>Macro</summary>
 
 </details>
+
 <details>
     <summary>Thao tác bit</summary>
 
