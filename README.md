@@ -74,8 +74,16 @@ Quy trình  biên dịch là quá trình chuyển đổi từ ngôn ngữ bậc 
 
 </details>
 <details>
-    <summary>Macro</summary>
+    <summary>Macro, Inline, Function</summary>
 
+### Macro
+- Không phải là hàm or biến và được xử lý trong bước preprocessor.
+- Thay thế đoạn code được khai báo macro vào bất cứ chỗ nào xuất hiện macro đó => càng nhiều macro thì khiến chương trình tăng size nhiều hơn.
+### Inline
+- Inline về cơ bản nó sẽ không tạo ra lời gọi hàm mà chèn trực tiếp mã vào nơi hàm được gọi => tăng size (cụ thể là của file thực thi). 
+- Khi được nạp vào ram, mỗi hàm sẽ có địa chỉ nhất định, khi gọi thì cpu sẽ jump tới địa chỉ đó. Viết inline thì compiler sẽ chèn luôn code của hàm đó vào, thay vì chèn địa chỉ, cpu chỉ chạy một mạch làm chương trình chạy nhanh.
+### Hàm bình thường
+Khi thấy hàm được gọi, compiler sẽ phải lưu con trỏ chương trình Program Counter hiện tại vào stack; chuyển PC tới hàm được gọi, thực hiện hàm đó xong và lấy kết quả trả về; sau đó quay lại vị trí ban đầu trong stack trước khi gọi hàm và tiếp tục thực hiện chương trình.
 </details>
 
 <details>
