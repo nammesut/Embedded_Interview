@@ -1,5 +1,7 @@
 # Embedded Interview
-## Thao tác Bit
+<details>
+    <summary>Thao tác bit</summary>
+    
 - AND (&): Ngõ ra là 1 nếu 2 bit đều là 1, một trong 2 bit bằng 0 là 0.
 - OR (|): Ngõ ra là 1 nếu một trong 2 bit là 1, 2 bit đều bằng 0 là 0.
 - XOR (^): Ngõ ra là 1 nếu tổng số bit 1 là lẻ, ngược lại.
@@ -9,8 +11,11 @@
 - Dịch bit sang phải (>>): Bỏ đi n bit bên phải đồng thời dịch sang phải và thêm n bit 0 bên trái.
 - Dịch bit sang trái (<<): Bỏ đi n bit bên trái đồng thời dịch sang trái và thêm n bit 0 bên phải.
 
+Ví dụ: Hiển thị giá trị PORTA dưới dạng nhị phân.
+https://github.com/nammesut/Embedded_Interview/blob/e1c9b211326006765745b7dca61a079875b06b6b/ON_TAP/Bit_Operator.c#L4-L16
+
 Ví dụ:
-```
+```ruby
 uint8_t PORTA = 0b00010000;
 PORTA = PORTA | (0b10000000 >> 2); 
 
@@ -18,35 +23,35 @@ Kết quả: 0b00110000
 ```
 
 Giải thích:
-```
+```ruby
 10000000 >> 2 = 00100000
 PORTA = 00010000 | 00100000 = 00110000
 ```
 
-## Set, clear, toggle, test 1 bit
+### Set, clear, toggle, test 1 bit
 - Set 1 bit thứ n lên 1:
 
-```
+```ruby
 output |= (1 << n);
 ```
 - Clear 1 bit thứ n về 0:
 
-```
+```ruby
 output &= ~(1 << n);
 ```
 - Toggle 1 bit thứ n:
 
-```
+```ruby
 output ^= (1 << n);
 ```
 - Test 1 bit là 1 hay 0:
 
-```
+```ruby
 output & (1 << n);
 ```
 
 Ví dụ: Clear bit thứ 3 từ trái sang về 0
-```
+```ruby
 uint8_t PORTA = 0b00010000;
 PORTA = PORTA & ~(0b10000000 >> 3); 
 
@@ -54,11 +59,16 @@ Kết quả: 0b00000000
 ```
 
 Giải thích:
-```
+```ruby
 10000000 >> 3 = 00010000 //~(11101111)
 PORTA = 11101111 & 00010000 = 00000000
 ```
-## Size of Struct
+</details>
+
+<details>
+    <summary>Struct và Union</summary>
+        
+### Size of Struct
 - Cách tính kích thước của một struct:
 1. Địa chỉ của struct bắt đầu từ 0.
 2. Địa chỉ của một biến bên trong struct luôn chia hết cho kích thước của biến đó.
@@ -150,7 +160,7 @@ Giải thích:
 
 ![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/11a6d444-07ee-44d1-863e-a43848c9d814)
 
-## Size of Union
+### Size of Union
 Kích thước của 1 union được tính bằng kích thước của member lớn nhất trong nó và các member trong union sẽ dùng chung 1 địa chỉ.
 
 Ví dụ 1:
@@ -186,7 +196,11 @@ Giải thích: Kích thước của member lớn nhất trong union là char v�
 
 ![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/70e0e960-33a2-481e-ace7-a80df82c08f4)
 
-## Từ khóa Extern và biến Static
+</details>
+
+<details>
+    <summary>Từ khóa Extern và biến Static</summary>
+    
 ### Extern
 - Là tham chiếu của một biến, hàm cùng tên nào đó và đã được định nghĩa bên ngoài.
 - Biến được tham chiếu phải được khai báo toàn cục và có thể nằm trong một file khác.
@@ -244,7 +258,12 @@ test();
 
 Kết quả: 10 11 12
 ```
-## Pointer
+</details>
+    
+<details>
+    <summary>Pointer</summary>
+    
+### Pointer
 Giá trị của pointer sẽ là địa chỉ của một biến khác mà nó trỏ đến.
 
 ![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/e763a28a-4257-4099-a2f3-3a7513df5ca7)
@@ -308,3 +327,4 @@ ptr = &tong;
 
 Kết quả: 10 1.200000 22
 ```
+</details>
