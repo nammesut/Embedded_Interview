@@ -164,7 +164,7 @@ Giải thích:
 Kích thước của 1 union được tính bằng kích thước của member lớn nhất trong nó và các member trong union sẽ dùng chung 1 địa chỉ.
 
 Ví dụ 1:
-```
+```ruby
 union sizeofUnion
 {
     uint8_t a[5];
@@ -179,7 +179,7 @@ Kết quả: 5
 Giải thích: Kích thước của member lớn nhất trong union là a với 5 phần tử mỗi phần tử 1byte nên size của union trên là 5bytes.
 
 Ví dụ 2:
-```
+```ruby
 union sizeofUnion
 {
     uint32_t a;
