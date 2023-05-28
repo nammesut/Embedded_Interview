@@ -248,7 +248,7 @@ Giá trị của pointer sẽ là địa chỉ của một biến khác mà nó 
 
 ### Con trỏ hàm
 Ví dụ 1:
-```
+```ruby
 void tong(int a, int b){
     printf("%d\n", a+b);
 }
@@ -263,7 +263,7 @@ Kết quả: 16
 ```
 
 Ví dụ 2: Khai báo con trỏ hàm với input parameter là con trỏ hàm khác
-```
+```ruby
 void tong(int a, int b){
     printf("%d\n", a+b);
 }
@@ -278,13 +278,13 @@ Kết quả: 17
 ```
 ### Con trỏ void
 Khác với con trỏ thường chỉ lưu được địa chỉ của biến mà nó trỏ đến cùng kiểu dữ liệu với nó, ví dụ:
-```
+```ruby
 int a = 10;
 int *ptr = &a;
 float *p = &a;  //error
 ```
 thì con trỏ void có thể lưu tất cả các địa chỉ có kiểu dữ liệu khác nhau nhưng muốn lấy giá trị tại địa chỉ đó phải ép kiểu dữ liệu về đúng kiểu nó trỏ đến
-```
+```ruby
 void tong(int a, int b){
     printf("%d\n", a+b);
 }
