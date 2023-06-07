@@ -2,6 +2,6 @@
 #define __TEST_H
 #include <stdio.h>
 
-int tinhCuocTaxi(int n);
+int tinhCuocTaxi(int soKm);
 
 #endif
