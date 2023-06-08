@@ -2,6 +2,8 @@
 #define __TEST_H
 #include <stdio.h>
 
-void tinhBieuThucNhapVao(char arr[]);
+int addsub();
+int muldiv();
+int check();
 
 #endif
