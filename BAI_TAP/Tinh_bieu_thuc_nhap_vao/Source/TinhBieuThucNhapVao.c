@@ -7,14 +7,10 @@
 #include <string.h>
 #include "head.h"
 
-int addsub();
-int muldiv();
-int term();
-
 char arr[100];
 int i = 0;
 
-int term(){
+int check(){
   int n = 0;
 
   if(arr[i] == '('){
@@ -38,15 +34,15 @@ int term(){
 int muldiv(){
   int a,b;
   
-  a = term();
+  a = check();
   for(;;){
     if(arr[i] == '*'){
       i++;
-      b = term();
+      b = check();
       a *= b; 
     }else if(arr[i] == '/'){
       i++;
-      b = term();
+      b = check();
       a /= b;
     }else{
       return a;
