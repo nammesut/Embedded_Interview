@@ -3,12 +3,12 @@
 #include "head.h"
 
 extern char arr[100];
-extern int addsub();
+extern int ptBacI();
 
 int main(){
   printf("Nhap bieu thuc: ");
   scanf("%s", arr);
 
-  printf("%d\n",addsub());  
+  ptBacI();  
   return 0;
   } 

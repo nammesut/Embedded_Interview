@@ -4,6 +4,7 @@
 
 int addsub();
 int muldiv();
+int ptBacI();
 int check();
 
 #endif
