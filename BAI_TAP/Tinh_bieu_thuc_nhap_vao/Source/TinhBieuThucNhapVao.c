@@ -10,12 +10,12 @@
 char arr[100];
 int i = 0;
 
-int check(){
-  int n = 0;
+float check(){
+  float n = 0;
 
   if(arr[i] == '('){
     i++;
-    n = addsub();
+    n = ptBacI();
     
     if(arr[i] == ')'){
       i++;
@@ -24,76 +24,110 @@ int check(){
   }
   else{
     while('0' <= arr[i] && arr[i] <= '9'){
-      n = (arr[i] - '0');
+      n = arr[i] - '0';
       i++;
     }
   }
   return n;
 }
 
-int muldiv(){
-  int a,b;
+float ptBacI(){
+  float a,b;
   
   a = check();
-  for(;;){
+  
+  while(1){
     if(arr[i] == '*'){
       i++;
       b = check();
       a *= b; 
-    }else if(arr[i] == '/'){
+    }
+    else if(arr[i] == '/'){
       i++;
       b = check();
       a /= b;
-    }else{
-      return a;
     }
-  }
-}
 
-int addsub(){
-  int a,b;
-  
-  a = muldiv();
-  
-  for(;;){
-    if(arr[i] == '+'){
-      i++;
-      b = muldiv();
-      a += b; 
-    }else if(arr[i] == '-'){
-      i++;
-      b = muldiv();
-      a -= b;
-    }else{
-      return a;
-    }
-  }
-  
-}
-
-int ptBacI(){
-  int a,b;
-  
-  a = addsub();
-  
-  for(;;){
-    if(arr[i] == 'x'){
+    else if(arr[i] == 'x'){
       i++;
       if(arr[i] == '+'){
         i++;
-        b = addsub();
+        b = check();
         a = -(b/a); 
       }
       else if (arr[i] == '-'){
         i++;
-        b = addsub();
+        b = check();
         a = b/a; 
       } 
-      printf("Bieu thuc nhap vao la PT bac 1: x = %d\n", a);
-    }else{
-      printf("%d\n", a);
-      return a;
+      printf("Bieu thuc nhap vao la PT bac 1: x = ");
     }
+
+    else if(arr[i] == '+'){
+      i++;
+      b = check();
+
+      if(arr[i++] == 'x'){
+        printf("Bieu thuc nhap vao la PT bac 1: x = ");
+        a = -(a/b);
+      }
+      else
+        a += b; 
+    }
+    else if(arr[i] == '-'){
+      i++;
+      b = check();
+
+      if(arr[i++] == 'x'){
+        printf("Bieu thuc nhap vao la PT bac 1: x = ");
+        a = a/b;
+      }
+      else
+        a -= b;
+    }
+
+    else
+      return a;
   }
-  
 }
+
+
+// int muldiv(){
+//   int a,b;
+  
+//   a = check();
+//   for(;;){
+//     if(arr[i] == '*'){
+//       i++;
+//       b = check();
+//       a *= b; 
+//     }else if(arr[i] == '/'){
+//       i++;
+//       b = check();
+//       a /= b;
+//     }else{
+//       return a;
+//     }
+//   }
+// }
+
+// int addsub(){
+//   int a,b;
+  
+//   a = muldiv();
+  
+//   for(;;){
+//     if(arr[i] == '+'){
+//       i++;
+//       b = muldiv();
+//       a += b; 
+//     }else if(arr[i] == '-'){
+//       i++;
+//       b = muldiv();
+//       a -= b;
+//     }else{
+//       return a;
+//     }
+//   }
+  
+// }

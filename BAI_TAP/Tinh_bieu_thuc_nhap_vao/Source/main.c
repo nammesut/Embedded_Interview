@@ -3,12 +3,12 @@
 #include "head.h"
 
 extern char arr[100];
-extern int ptBacI();
+extern float ptBacI();
 
 int main(){
   printf("Nhap bieu thuc: ");
   scanf("%s", arr);
-
-  ptBacI();  
+  printf("%.1f\n", ptBacI());
+  
   return 0;
   } 
