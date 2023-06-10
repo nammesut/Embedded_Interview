@@ -1,6 +1,9 @@
 # Embedded Interview
 <details>
     <summary>Compiler</summary>
+    
+### Quy trình biên dịch cơ bản
+    
 Quy trình  biên dịch là quá trình chuyển đổi từ ngôn ngữ bậc cao (C/C++, Pascal, Java, C#…) sang ngôn ngữ đích (ngôn ngữ máy) để máy tính có thể hiểu và thực thi. Quá trình được chia ra làm 4 giai đoạn chính:
 
 ![image](https://github.com/nammesut/Embedded_Interview/assets/133733103/cb11786e-5c5d-4242-ad65-aed8faf26c21)
@@ -109,6 +112,8 @@ Như ví dụ trên ảnh là VĐK 8bit, thì khi chương trình chạy 0x00 s�
 <details>
     <summary>Thao tác bit</summary>
 
+### Các phép toán bit
+    
 - AND (&): Ngõ ra là 1 nếu 2 bit đều là 1, một trong 2 bit bằng 0 là 0.
 - OR (|): Ngõ ra là 1 nếu một trong 2 bit là 1, 2 bit đều bằng 0 là 0.
 - XOR (^): Ngõ ra là 1 nếu tổng số bit 1 là lẻ, ngược lại.
