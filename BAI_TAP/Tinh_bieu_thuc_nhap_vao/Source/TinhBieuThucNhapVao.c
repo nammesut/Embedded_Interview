@@ -7,10 +7,9 @@
 #include <string.h>
 #include "head.h"
 
-// float ptBacI();
-
-char arr[] = "2-2-1";
+char arr[] = "3-3x";
 int i = 0;
+// float ptBacI();
 
 float check(){
   float n = 0;
@@ -34,7 +33,7 @@ float check(){
 }
 
 float ptBacI(){
-  float a,b;
+  float a, b, c;
   
   a = check();
   
@@ -52,6 +51,10 @@ float ptBacI(){
 
     else if(arr[i] == 'x'){
       i++;
+      // if(arr[i] == '^'){
+
+      // }
+
       if(arr[i] == '+'){
         i++;
         b = check();
@@ -72,11 +75,13 @@ float ptBacI(){
       if(arr[i] == 'x'){
         printf("Bieu thuc nhap vao la PT bac 1: x = ");
         a = -(a/b);
+        i++;
       }
       else{
         a += b;
       } 
     }
+
     else if(arr[i] == '-'){
       i++;
       b = check();
@@ -84,6 +89,7 @@ float ptBacI(){
       if(arr[i] == 'x'){
         printf("Bieu thuc nhap vao la PT bac 1: x = ");
         a = a/b;
+        i++;
       }
       else{
         a -= b;
