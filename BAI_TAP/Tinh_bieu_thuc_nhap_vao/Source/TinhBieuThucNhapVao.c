@@ -7,98 +7,95 @@
 #include <string.h>
 #include "head.h"
 
-char arr[] = "3-3x";
+char arr[100];
 int i = 0;
-// float ptBacI();
 
 float check(){
-  float n = 0;
+    float n = 0;
 
-  if(arr[i] == '('){
-    i++;
-    n = ptBacI();
-    
-    if(arr[i] == ')'){
-      i++;
-      return n;
+    if(arr[i] == '('){
+        i++;
+        n = ptBacI();
+        
+        if(arr[i] == ')'){
+            i++;
+            return n;
+        }
     }
-  }
-  else{
-    while('0' <= arr[i] && arr[i] <= '9'){
-      n = arr[i] - '0';
-      i++;
+    else{
+        
+        while('0' <= arr[i] && arr[i] <= '9'){
+            n = arr[i] - '0';
+            i++;
+        }
     }
-  }
-  return n;
+    return n;
 }
 
 float ptBacI(){
-  float a, b, c;
-  
-  a = check();
-  
-  while(1){
-    if(arr[i] == '*'){
-      i++;
-      b = check();
-      a *= b; 
+    float a, b, c;
+    
+    a = check();
+    
+    while(1){
+        if(arr[i] == '*'){
+            i++;
+            b = check();
+            a *= b; 
+        }
+        else if(arr[i] == '/'){
+            i++;
+            b = check();
+            a /= b;
+        }
+
+        else if(arr[i] == 'x'){
+            i++;
+
+            if(arr[i] == '+'){
+                i++;
+                b = check();
+                a = -(b/a); 
+            }
+            else if (arr[i] == '-'){
+                i++;
+                b = check();
+                a = b/a; 
+            } 
+            printf("Bieu thuc nhap vao la PT bac 1: x = ");
+        }
+
+        else if(arr[i] == '+'){
+            i++;
+            b = check();
+
+            if(arr[i] == 'x'){
+                printf("Bieu thuc nhap vao la PT bac 1: x = ");
+                a = -(a/b);
+                i++;
+            }
+            else{
+                a += b;
+            } 
+        }
+
+        else if(arr[i] == '-'){
+            i++;
+            b = check();
+
+            if(arr[i] == 'x'){
+                printf("Bieu thuc nhap vao la PT bac 1: x = ");
+                a = a/b;
+                i++;
+            }
+            else{
+                a -= b;
+            }
+        }
+
+        else
+            return a;
     }
-    else if(arr[i] == '/'){
-      i++;
-      b = check();
-      a /= b;
-    }
-
-    else if(arr[i] == 'x'){
-      i++;
-      // if(arr[i] == '^'){
-
-      // }
-
-      if(arr[i] == '+'){
-        i++;
-        b = check();
-        a = -(b/a); 
-      }
-      else if (arr[i] == '-'){
-        i++;
-        b = check();
-        a = b/a; 
-      } 
-      printf("Bieu thuc nhap vao la PT bac 1: x = ");
-    }
-
-    else if(arr[i] == '+'){
-      i++;
-      b = check();
-
-      if(arr[i] == 'x'){
-        printf("Bieu thuc nhap vao la PT bac 1: x = ");
-        a = -(a/b);
-        i++;
-      }
-      else{
-        a += b;
-      } 
-    }
-
-    else if(arr[i] == '-'){
-      i++;
-      b = check();
-
-      if(arr[i] == 'x'){
-        printf("Bieu thuc nhap vao la PT bac 1: x = ");
-        a = a/b;
-        i++;
-      }
-      else{
-        a -= b;
-      }
-    }
-
-    else
-      return a;
-  }
 }
 
 // int main(){
