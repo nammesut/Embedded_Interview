@@ -11,7 +11,7 @@ char arr[100];
 int i = 0;
 
 float check(){
-    float n = 0;
+    float n = 1;
 
     if(arr[i] == '('){
         i++;
@@ -51,6 +51,18 @@ float ptBacI(){
 
         else if(arr[i] == 'x'){
             i++;
+            // if(arr[i] == '^'){
+            //     i += 2;
+            //     if(arr[i] == '+'){
+            //         i++;
+            //         b = check();
+            //         if(arr[i] == 'x'){
+            //             i++;
+            //             c = check();
+            //         }
+            //     }
+
+            // }
 
             if(arr[i] == '+'){
                 i++;
@@ -67,28 +79,42 @@ float ptBacI(){
 
         else if(arr[i] == '+'){
             i++;
-            b = check();
 
             if(arr[i] == 'x'){
+                b = check();
+                i++;
                 printf("Bieu thuc nhap vao la PT bac 1: x = ");
                 a = -(a/b);
+            }
+            else if((arr[i] != 'x') && (arr[i+1] == 'x')){
+                b = check();
                 i++;
+                printf("Bieu thuc nhap vao la PT bac 1: x = ");
+                a = -(a/b);
             }
             else{
+                b = check();
                 a += b;
             } 
         }
 
         else if(arr[i] == '-'){
             i++;
-            b = check();
 
             if(arr[i] == 'x'){
+                b = check();
+                i++;
                 printf("Bieu thuc nhap vao la PT bac 1: x = ");
                 a = a/b;
+            }
+            else if((arr[i] != 'x') && (arr[i+1] == 'x')){
+                b = check();
                 i++;
+                printf("Bieu thuc nhap vao la PT bac 1: x = ");
+                a = a/b;
             }
             else{
+                b = check();
                 a -= b;
             }
         }
@@ -102,6 +128,7 @@ float ptBacI(){
 //   printf("%.1f\n", ptBacI());
 //   return 0;
 // }
+
 // int muldiv(){
 //   int a,b;
   
