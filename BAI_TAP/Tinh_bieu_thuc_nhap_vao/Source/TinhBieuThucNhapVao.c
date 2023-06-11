@@ -7,7 +7,7 @@
 #include <string.h>
 #include "head.h"
 
-char arr[100];
+char arr[] = "2x-1";
 int i = 0;
 
 float check(){
