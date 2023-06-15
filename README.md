@@ -533,7 +533,9 @@ ps.ages(18);
 ### Constructor
 `Constructor` hay hàm dựng là một hàm đặc biệt, nó sẽ được gọi ngay khi chúng ta khởi tạo một object. 
 
-`Constructor` được viết trong phạm vi `public` và có thể `có input para` hoặc `không input para`
+`Constructor` được viết trong phạm vi `public` và có thể `có input para`, `không input para` hoặc `input para mặc định`
+
+Ví dụ Constructor `có input para`
 ```ruby
 class Person { 
     public:  
@@ -555,5 +557,49 @@ Person ps(18);  // object
 
 ps.output();
 ```
+Ví dụ Constructor `không input para`
+```ruby
+class Person { 
+    public:  
+        Person();     // constructor ko input para
+        void output();       // method
+    private:
+        int age;           // property 
+};
 
+Person::Person(){    // Khởi tạo constructor
+    Person::age = 18; 
+} 
+
+void Person::output(){
+    cout << age;
+}
+
+Person ps;  // object
+
+ps.output();
+```
+Ví dụ Constructor `input para mặc định`
+```ruby
+class Person { 
+    public:  
+        Person(int age = 18);     // constructor có input para mặc định
+        void output();       // method
+    private:
+        int age;           // property 
+};
+
+Person::Person(int age){    // Khởi tạo constructor
+    Person::age = age; 
+} 
+
+void Person::output(){
+    cout << age;
+}
+
+Person ps(20);  // Hiển thị 20
+// Person ps;  // Hiển thị mặc định là 18
+
+ps.output();
+```
 </details>
