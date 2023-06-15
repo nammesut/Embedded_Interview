@@ -431,3 +431,54 @@ Pointer to pointer là một loại con trỏ dùng để lưu trữ địa ch�
     
 https://github.com/nammesut/Embedded_Interview/blob/67e94c45c5a57d27f6937951e9b1b63226c22dbe/ON_TAP/Pointer.c#L34-L40
 </details>
+
+</details>
+    
+<details>
+    <summary>C++: Class</summary>
+
+### Khái niệm
+Class thực chất là một kiểu dữ liệu do người lập trình định nghĩa. Class hay lớp là một mô tả trừu tượng (abstract) của nhóm các đối tượng (object) có cùng bản chất. Một class trong C++ sẽ có các đặc điểm sau:
+- Các thành phần dữ liệu (thuộc tính hay property).
+- Các phương thức (hàm thành phần hay method).
+
+Ví dụ 1: Khai báo 1 class cơ bản
+```ruby
+class Person { 
+    public: 
+        string firstName; // property 
+        string lastName;  // property 
+        int age;          // property 
+
+        void fullname() { // method 
+            cout << firstName << ' ' << lastName; 
+        } 
+};
+
+Person person;    //object
+
+person.firstName = "Nam"; 
+person.lastName = "Nguyen";
+ 
+person.fullname();
+```
+> Đối với method nên triển khai theo cách dưới để dễ quản lý source.
+```ruby
+class Person { 
+    public: 
+        string firstName; // property 
+        string lastName;  // property 
+        int age;          // property 
+
+        void fullname(); // method
+};
+
+void Person::fullname(){
+    cout << firstName << ' ' << lastName; 
+}
+```
+### Access modifiers (Phạm vi truy cập)
+Có 3 phạm vi truy cập trong C++ là public, private và protected.
+- Public: Các thuộc tính và phương thức thuộc public đều có thể được truy cập trực tiếp thông qua object của class đó [Ví dụ 1](vídụ1)
+- Private: Các member thuộc private thì chỉ có class mới truy cập được. Được sử dụng khi không muốn người khác có thể tùy ý gán giá trị
+</details>
