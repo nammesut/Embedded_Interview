@@ -431,3 +431,175 @@ Pointer to pointer là một loại con trỏ dùng để lưu trữ địa ch�
     
 https://github.com/nammesut/Embedded_Interview/blob/67e94c45c5a57d27f6937951e9b1b63226c22dbe/ON_TAP/Pointer.c#L34-L40
 </details>
+
+</details>
+    
+<details>
+    <summary>C++: Class</summary>
+
+### Khái niệm
+`Class` thực chất là một kiểu dữ liệu do người lập trình định nghĩa. Class hay lớp là một mô tả trừu tượng (abstract) của nhóm các đối tượng (object) có cùng bản chất. Một class trong C++ sẽ có các đặc điểm sau:
+- Các thành phần dữ liệu (thuộc tính hay `property`).
+- Các phương thức (hàm thành phần hay `method`).
+
+Ví dụ 1: Khai báo 1 class cơ bản
+```ruby
+class Person { 
+    public: 
+        string firstName; // property 
+        string lastName;  // property 
+        int age;          // property 
+
+        void fullname() { // method 
+            cout << firstName << ' ' << lastName; 
+        } 
+};
+
+Person person;    //object
+
+person.firstName = "Nam"; 
+person.lastName = "Nguyen";
+ 
+person.fullname();
+```
+### Method declaration (Định nghĩa phương thức)
+Có `2` cách định nghĩa thi hành: 
+1. Định nghĩa thi hành trong lúc định nghĩa class
+```ruby
+class Person { 
+    public: 
+        string firstName; // property 
+        string lastName;  // property  
+
+        void fullname() { // method 
+            cout << firstName << ' ' << lastName; 
+        } 
+};
+```
+2. Định nghĩa thi hành bên ngoài class
+```ruby
+class Person { 
+    public: 
+        string firstName; // property 
+        string lastName;  // property 
+
+        void fullname(); // method
+};
+
+void Person::fullname(){
+    cout << firstName << ' ' << lastName; 
+}
+```
+> Đối với method nên triển khai theo cách thứ 2 để dễ quản lý source.
+### Access modifiers (Phạm vi truy cập)
+Có `3` phạm vi truy cập trong C++ là `public`, `private` và `protected`.
+- `Public`: Các thuộc tính và phương thức thuộc public đều có thể được truy cập trực tiếp thông qua object của class đó, như `ví dụ 1`
+- `Private`: Các member thuộc private thì chỉ có class mới truy cập được. Được sử dụng khi không muốn người khác có thể tùy ý gán giá trị
+```ruby
+class Person { 
+    public:  
+        int age;          // property 
+        void fullname(); // method
+    private:
+        string firstName; // property 
+        string lastName;  // property
+};
+
+void Person::fullname(){
+    firstName = "Nam";
+    lastName = "Nguyen";
+
+    cout << firstName << ' ' << lastName; 
+} 
+```
+
+```ruby
+class Person { 
+    public:  
+        void ages(int age);     // method
+    private:
+        int age;                // property 
+};
+
+void Person::ages(int age){
+    Person::age = age;
+    cout << age; 
+}
+
+Person ps;  // object
+
+ps.ages(18);
+```
+### Constructor
+`Constructor` hay hàm dựng là một hàm đặc biệt, nó sẽ được gọi ngay khi chúng ta khởi tạo một object. 
+
+`Constructor` được viết trong phạm vi `public` và có thể `có input para`, `không input para` hoặc `input para mặc định`
+
+Ví dụ Constructor `có input para`
+```ruby
+class Person { 
+    public:  
+        Person(int age);     // constructor có input para
+        void output();       // method
+    private:
+        int age;           // property 
+};
+
+Person::Person(int age){    // Khởi tạo constructor
+    Person::age = age; 
+} 
+
+void Person::output(){
+    cout << age;
+}
+
+Person ps(18);  // object
+
+ps.output();
+```
+Ví dụ Constructor `không input para`
+```ruby
+class Person { 
+    public:  
+        Person();     // constructor ko input para
+        void output();       // method
+    private:
+        int age;           // property 
+};
+
+Person::Person(){    // Khởi tạo constructor
+    Person::age = 18; 
+} 
+
+void Person::output(){
+    cout << age;
+}
+
+Person ps;  // object
+
+ps.output();
+```
+Ví dụ Constructor `input para mặc định`
+```ruby
+class Person { 
+    public:  
+        Person(int age = 18);     // constructor có input para mặc định
+        void output();       // method
+    private:
+        int age;           // property 
+};
+
+Person::Person(int age){    // Khởi tạo constructor
+    Person::age = age; 
+} 
+
+void Person::output(){
+    cout << age;
+}
+
+Person ps(20);  // Hiển thị 20
+// Person ps;  // Hiển thị mặc định là 18
+
+ps.output();
+```
+</details>
