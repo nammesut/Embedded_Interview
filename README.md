@@ -493,8 +493,8 @@ void Person::fullname(){
 > Đối với method nên triển khai theo cách thứ 2 để dễ quản lý source.
 ### Access modifiers (Phạm vi truy cập)
 Có `3` phạm vi truy cập trong C++ là `public`, `private` và `protected`.
-- `Public`: Các thuộc tính và phương thức thuộc public đều có thể được truy cập trực tiếp thông qua object của class đó, như `ví dụ 1`
-- `Private`: Các member thuộc private thì chỉ có class mới truy cập được. Được sử dụng khi không muốn người khác có thể tùy ý gán giá trị
+- `Public`: Các thuộc tính và phương thức thuộc public `đều có thể được truy cập trực tiếp` thông qua object của class đó hoặc `class kế thừa`, như `ví dụ 1`
+- `Private`: Các member thuộc private của `class nào` thì `chỉ có class đó mới truy cập` được, `class kế thừa cũng không thể truy cập`. Được sử dụng khi không muốn người khác có thể tùy ý gán giá trị
 ```ruby
 class Person { 
     public:  
@@ -602,4 +602,63 @@ Person ps(20);  // Hiển thị 20
 
 ps.output();
 ```
+
+### Overloding (Nạp chồng)
+Cho phép trong `cùng một class` có thể có `nhiều phương thức cùng tên` nhưng `khác nhau về số lượng tham số` hoặc `kiểu dữ liệu`.
+```ruby
+class ToanHoc{
+    public:
+        void Tong(int a, int b){
+            cout << "Tong: " << (a+b) << endl;
+        }
+
+        void Tong(int a, int b, int c){
+            cout << "Tong: " << (a+b+c) << endl;
+        }
+};
+
+ToanHoc th;
+th.Tong(2, 4);       // = 6
+th.Tong(2, 4, 5);    // = 11
+```
+Như ví dụ trên `hàm Tong` dùng để cộng hai số nguyên. Khi muốn cộng ba số nguyên không lại phải viết một hàm với tên khác (chẳng hạn Tong1) và truyền vào 3 số nguyên hay sao? Như vậy thì code sẽ trở nên phức tạp hơn trong khi hai hàm có cùng một mục đích là cộng các số nguyên lại với nhau. `Khi gọi hàm Tong` và truyền vào `số lượng tham số khác nhau` thì sẽ gọi tới `hàm có số lượng tham số tương ứng`.
+
+### Overriding (Ghi đè)
+Được sử dụng trong trường hợp `lớp con kế thừa từ lớp cha` và `muốn định nghĩa lại` một phương thức đã có mặt ở lớp cha, tuy nhiên phương thức ở lớp cha có thể phù hợp với lớp con này nhưng không phù hợp với lớp con khác, do đó lớp con cần ghi đè lại phương thức đó cho phù hợp.
+```ruby
+class Animal{
+    public:
+        void animalSound(){
+            cout << "Sound" << endl;
+        }   
+};
+
+class Dog : public Animal{
+    public:
+        void animalSound(){
+            cout << "Gau gau" << endl;
+        }
+};
+
+class Cat : public Animal{
+    public:
+        void animalSound(){
+            cout << "Meo meo" << endl;
+        }
+};
+
+Animal animal;
+animal.animalSound();
+
+Dog dog;
+dog.animalSound();
+
+Cat cat;
+cat.animalSound();
+```
+Như ví dụ class Animal có phương thức animalSound đại diện cho tiếng kêu của động vật. Class Dog và Cat kế thừa từ class Animal, nhưng chó và mèo có tiếng kêu khác nhau nên phải implement phương thức animalSound cho mỗi lớp khác nhau.
+### Đặc tính của OOP
+Có `4 đặc tính` quan trọng trong OOP:
+1. `Inheritance (Tính kế thừa)`: một class `có thể kế thừa các thuộc tính` của một class khác đã tồn tại trước đó.
+
 </details>
