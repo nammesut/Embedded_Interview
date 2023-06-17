@@ -531,7 +531,7 @@ Person ps;  // object
 ps.ages(18);
 ```
 ### Constructor
-`Constructor` hay hàm dựng là một hàm đặc biệt, nó sẽ được gọi ngay khi chúng ta khởi tạo một object. 
+`Constructor` hay hàm có `tên trùng` với tên của class đó,  nó sẽ được gọi ngay khi chúng ta khởi tạo một object. 
 
 `Constructor` được viết trong phạm vi `public` và có thể `có input para`, `không input para` hoặc `input para mặc định`
 
@@ -603,7 +603,7 @@ Person ps(20);  // Hiển thị 20
 ps.output();
 ```
 
-### Overloding (Nạp chồng)
+### Overloading (Nạp chồng)
 Cho phép trong `cùng một class` có thể có `nhiều phương thức cùng tên` nhưng `khác nhau về số lượng tham số` hoặc `kiểu dữ liệu`.
 ```ruby
 class ToanHoc{
@@ -657,6 +657,13 @@ Cat cat;
 cat.animalSound();
 ```
 Như ví dụ class Animal có phương thức animalSound đại diện cho tiếng kêu của động vật. Class Dog và Cat kế thừa từ class Animal, nhưng chó và mèo có tiếng kêu khác nhau nên phải implement phương thức animalSound cho mỗi lớp khác nhau.
+
+### So sánh Overloading và Overriding
+| Overloading  | Overriding |
+| ------------ | -----------|
+| `Thêm` hành vi cho phương thức  | `Thay đổi` hành vi hiện tại của phương thức  |
+| `Có thể khác nhau` về số lượng và kiểu dữ liệu của tham số  | Số lượng và kiểu dữ liệu của tham số `phải giống nhau`  |
+| Xảy ra trong `cùng một class` | Xảy ra `ở 2 class có quan hệ kế thừa` |
 ### Đặc tính của OOP
 Có `4 đặc tính` quan trọng trong OOP:
 1. `Inheritance (Tính kế thừa)`: một class `có thể kế thừa các thuộc tính` của một class khác đã tồn tại trước đó.
