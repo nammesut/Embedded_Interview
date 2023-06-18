@@ -770,7 +770,11 @@ Khai báo nhiều object, mỗi object các thuộc tính của nó đều khác
     
 ### Đặc tính của OOP
 Có `4 đặc tính` quan trọng trong OOP:
-1. `Inheritance (Tính kế thừa)`: một class `có thể kế thừa các thuộc tính` của một class khác đã tồn tại trước đó. Class con kế thừa thuộc tính của class cha thì class con gọi là `subclass`, và class cha là `superclass`.
+
+### `Inheritance (Tính kế thừa)`
+- Một class `có thể kế thừa các thuộc tính` của một class khác đã tồn tại trước đó.
+- Các kiểu kế thừa: `kế thừa public, `kế thừa private` và `kế thừa protected`.
+- Class con kế thừa thuộc tính của class cha thì class con gọi là `subclass`, và class cha là `superclass`.
 ```ruby
 class Animal{
     public:
@@ -801,6 +805,49 @@ dog.animalSound();
 
 Cat cat;
 cat.animalSound();
+```
+### `Polymorphism (Tính đa hình)` 
+- Là một khả năng làm cho một phương thức trong class `có thể đưa ra các kết quả hoàn toàn khác nhau`, tùy thuộc vào dữ liệu được xử lý.
+- `Kiểu trả về` hoặc `input para` `có thể khác nhau`.
+- `Tính đa hình` có thể được hiểu như `Overloading` và `Overriding`.
+```ruby
+class ToanHoc{
+    public:
+        void Tong(int a, int b);
+        void Tong(int a, int b, int c);
+        double Tong(int a, double b);
+};
+
+void ToanHoc::Tong(int a, int b){
+    cout << "Tong: " << (a+b) << endl;
+}
+
+void ToanHoc::Tong(int a, int b, int c){
+    cout << "Tong: " << (a+b+c) << endl;
+}
+
+double ToanHoc::Tong(int a, double b){
+    return (double)a + b;
+}
+
+ToanHoc th;
+th.Tong(2, 4);       // = 6
+th.Tong(2, 4, 5);    // = 11
+cout << "Tong: " << th.Tong(12, 3.5) << endl;
+```
+
+### Template
+- Template (khuôn mẫu) là một từ khóa trong C++, và là một `kiểu dữ liệu trừu tượng` tổng quát hóa cho các kiểu dữ liệu int, float, double, bool...
+- Có `2` loại đó là `function template` và `class template`.
+- Template giúp `định nghĩa tổng quát` cho hàm và lớp thay vì phải nạp chồng (overloading) cho từng hàm hay phương thức với những kiểu dữ liệu khác nhau.
+```ruby
+template <typename var1, typename var2>
+
+var1 tong(var1 a, var2 b){
+    return (var1)(a + b);
+}
+
+cout << "Tong: " << tong(12.5, 5) << endl;
 ```
 
 </details>
