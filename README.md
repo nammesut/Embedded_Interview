@@ -743,50 +743,6 @@ Như ví dụ class Animal có phương thức animalSound đại diện cho ti�
 | Xảy ra trong `cùng một class` | Xảy ra `ở 2 class có quan hệ kế thừa` |
 
 </details>
-
-<details>
-    <summary>Static trong class</summary>
-
-### Static
-- Là biến thành viên ở `dạng tĩnh` và `tồn tại duy nhất` trong class.
-- Do nó ở `dạng tĩnh` nên có thể `sử dụng trực tiếp` nó mà `không cần phải tạo đối tượng` từ class.
-
-> Static ở dạng tĩnh nên `phải được khởi tạo lần đầu` để lưu địa chỉ cố định.
-
-```ruby
-class Person { 
-    public:  
-        void output(int ages);       // method
-        static int age;           // property 
-};
-
-int Person::age;   // Khởi tạo static
-//int Person::age = 18;    // Có thể khởi tạo và gán value
-
-void Person::output(int ages){
-    age = ages;
-    cout << age << endl;
-}
-
-Person ps;  // object
-ps.output(20);
-```
-- `Được sử dụng chung` cho tất cả các đối tượng được tạo ra từ class.
-```ruby
-class Person { 
-    public:  
-        static int age;           // property 
-};
-
-int Person::age;    // Khởi tạo static
-
-Person ps1, ps2;  // object
-ps1.age = 20;
-ps2.age = 18;
-cout << ps1.age << endl;
-```
-Khai báo nhiều object, mỗi object các thuộc tính của nó đều khác nhau nhưng riêng `static thì chỉ có một` và nói ngắn gọn là `dùng chung một biến static`. 
-</details>
     
 <details>
     <summary>OOP</summary>
@@ -904,8 +860,47 @@ th.get();
 ```
 </details>
 <details>
-    <summary>Template và Namespace</summary>
-    
+    <summary>Static, Template và Namespace</summary>
+
+### Static
+- Là biến thành viên ở `dạng tĩnh` và `tồn tại duy nhất` trong class.
+- Do nó ở `dạng tĩnh` nên có thể `sử dụng trực tiếp` nó mà `không cần phải tạo đối tượng` từ class.
+
+> Static ở dạng tĩnh nên `phải được khởi tạo lần đầu` để lưu địa chỉ cố định.
+
+```ruby
+class Person { 
+    public:  
+        void output(int ages);       // method
+        static int age;           // property 
+};
+
+int Person::age;   // Khởi tạo static
+//int Person::age = 18;    // Có thể khởi tạo và gán value
+
+void Person::output(int ages){
+    age = ages;
+    cout << age << endl;
+}
+
+Person ps;  // object
+ps.output(20);
+```
+- `Được sử dụng chung` cho tất cả các đối tượng được tạo ra từ class.
+```ruby
+class Person { 
+    public:  
+        static int age;           // property 
+};
+
+int Person::age;    // Khởi tạo static
+
+Person ps1, ps2;  // object
+ps1.age = 20;
+ps2.age = 18;
+cout << ps1.age << endl;
+```
+Khai báo nhiều object, mỗi object các thuộc tính của nó đều khác nhau nhưng riêng `static thì chỉ có một` và nói ngắn gọn là `dùng chung một biến static`. 
 ### Template
 - Template (khuôn mẫu) là một từ khóa trong C++, và là một `kiểu dữ liệu trừu tượng` tổng quát hóa cho các kiểu dữ liệu int, float, double, bool...
 - Có `2` loại đó là `function template` và `class template`.
