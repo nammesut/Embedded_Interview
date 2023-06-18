@@ -436,7 +436,9 @@ https://github.com/nammesut/Embedded_Interview/blob/67e94c45c5a57d27f6937951e9b1
     
 <details>
     <summary>C++: Class</summary>
-
+        <details>
+            <summary>Khái niệm</summary>
+        
 ### Khái niệm
 `Class` thực chất là một kiểu dữ liệu do người lập trình định nghĩa. Class hay lớp là một mô tả trừu tượng (abstract) của nhóm các đối tượng (object) có cùng bản chất. Một class trong C++ sẽ có các đặc điểm sau:
 - Các thành phần dữ liệu (thuộc tính hay `property`).
@@ -462,6 +464,11 @@ person.lastName = "Nguyen";
  
 person.fullname();
 ```
+</details>
+
+<details>
+    <summary>Method declaration (Định nghĩa phương thức)</summary>
+    
 ### Method declaration (Định nghĩa phương thức)
 Có `2` cách định nghĩa thi hành: 
 1. Định nghĩa thi hành trong lúc định nghĩa class
@@ -491,6 +498,11 @@ void Person::fullname(){
 }
 ```
 > Đối với method nên triển khai theo cách thứ 2 để dễ quản lý source.
+</details>
+
+<details>
+    <summary>Access modifiers (Phạm vi truy cập)</summary>
+    
 ### Access modifiers (Phạm vi truy cập)
 Có `3` phạm vi truy cập trong C++ là `public`, `private` và `protected`.
 - `Public`: Các thuộc tính và phương thức thuộc public `đều có thể được truy cập trực tiếp` thông qua object của class đó hoặc `class kế thừa`, như `ví dụ 1`
@@ -530,6 +542,44 @@ Person ps;  // object
 
 ps.ages(18);
 ```
+- `Protected`: các phương thức và thuộc tính `chỉ có thể truy cập` qua các `class kế thừa` nó hoặc `chính nó`.
+```ruby
+class Person { 
+    public:  
+        void output(int ages);       // method
+    protected:
+        int age;           // property 
+};
+
+/* Truy cập age từ class chính nó */
+void Person::output(int ages){
+    age = ages;
+    cout << age << endl;
+}
+
+/* Truy cập age qua class kế thừa */
+class Chill : public Person{
+    public:
+        void out(int ages);
+};
+
+void Chill::out(int ages){
+    age = ages;
+    cout << age << endl;
+}
+
+Person ps;  // object
+ps.output(20);
+ps.age = 20;    // error vì age thuộc protected nên chỉ truy cập qua class kế thừa hoặc chính nó
+
+Chill boy;
+boy.out(12);
+```
+</details>
+
+<details>
+    <summary>Constructor</summary>
+    
 ### Constructor
 `Constructor` hay hàm có `tên trùng` với tên của class đó,  nó sẽ được gọi ngay khi chúng ta khởi tạo một object. 
 
@@ -602,7 +652,11 @@ Person ps(20);  // Hiển thị 20
 
 ps.output();
 ```
+</details>
 
+<details>
+    <summary>Overloading (Nạp chồng) và Overriding (Ghi đè)</summary>
+    
 ### Overloading (Nạp chồng)
 Cho phép trong `cùng một class` có thể có `nhiều phương thức cùng tên` nhưng `khác nhau về số lượng tham số` hoặc `kiểu dữ liệu`.
 ```ruby
@@ -664,8 +718,89 @@ Như ví dụ class Animal có phương thức animalSound đại diện cho ti�
 | `Thêm` hành vi cho phương thức  | `Thay đổi` hành vi hiện tại của phương thức  |
 | `Có thể khác nhau` về số lượng và kiểu dữ liệu của tham số  | Số lượng và kiểu dữ liệu của tham số `phải giống nhau`  |
 | Xảy ra trong `cùng một class` | Xảy ra `ở 2 class có quan hệ kế thừa` |
+
+</details>
+
+<details>
+    <summary>Static trong class</summary>
+
+### Static
+- Là biến thành viên ở `dạng tĩnh` và `tồn tại duy nhất` trong class.
+- Do nó ở `dạng tĩnh` nên có thể `sử dụng trực tiếp` nó mà `không cần phải tạo đối tượng` từ class.
+
+> Static ở dạng tĩnh nên `phải được khởi tạo lần đầu` để lưu địa chỉ cố định.
+
+```ruby
+class Person { 
+    public:  
+        void output(int ages);       // method
+        static int age;           // property 
+};
+
+int Person::age;   // Khởi tạo static
+//int Person::age = 18;    // Có thể khởi tạo và gán value
+
+void Person::output(int ages){
+    age = ages;
+    cout << age << endl;
+}
+
+Person ps;  // object
+ps.output(20);
+```
+- Được sử dụng chung` cho tất cả các đối tượng được tạo ra từ class.
+```ruby
+class Person { 
+    public:  
+        static int age;           // property 
+};
+
+int Person::age;    // Khởi tạo static
+
+Person ps1, ps2;  // object
+ps1.age = 20;
+ps2.age = 18;
+cout << ps1.age << endl;
+```
+Khai báo nhiều object, mỗi object các thuộc tính của nó đều khác nhau nhưng riêng `static thì chỉ có một` và nói ngắn gọn là `dùng chung một biến static`. 
+</details>
+    
+<details>
+    <summary>OOP</summary>
+    
 ### Đặc tính của OOP
 Có `4 đặc tính` quan trọng trong OOP:
-1. `Inheritance (Tính kế thừa)`: một class `có thể kế thừa các thuộc tính` của một class khác đã tồn tại trước đó.
+1. `Inheritance (Tính kế thừa)`: một class `có thể kế thừa các thuộc tính` của một class khác đã tồn tại trước đó. Class con kế thừa thuộc tính của class cha thì class con gọi là `subclass`, và class cha là `superclass`.
+```ruby
+class Animal{
+    public:
+        void animalSound(){
+            cout << "Sound" << endl;
+        }   
+};
+
+class Dog : public Animal{
+    public:
+        void animalSound(){
+            cout << "Gau gau" << endl;
+        }
+};
+
+class Cat : public Animal{
+    public:
+        void animalSound(){
+            cout << "Meo meo" << endl;
+        }
+};
+
+Animal animal;
+animal.animalSound();
+
+Dog dog;
+dog.animalSound();
+
+Cat cat;
+cat.animalSound();
+```
 
 </details>
