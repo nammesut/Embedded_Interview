@@ -858,7 +858,54 @@ th.Tong(2, 4);       // = 6
 th.Tong(2, 4, 5);    // = 11
 cout << "Tong: " << th.Tong(12, 3.5) << endl;
 ```
+### `Abstraction (Tính trừu tượng)` 
+- Là một khả năng mà chương trình `có thể bỏ qua sự phức tạp` bằng cách `tập trung vào cốt lõi của thông tin cần xử lý`.
+- `Gọi tên một phương thức` và `thu về kết quả xử lý`, mà `không cần biết làm cách nào` đối tượng đó thao tác trong class. 
+```ruby
+class ToanHoc{
+    public:
+        void Nhap(int x, int y);
+        void Xuat();
+    private:
+        int tong(int a, int b);
+};
+```
+Như chương trình tính `tổng a và b` thì người dùng `chỉ cần nhập vào a b` và `kết quả trả về`, còn chương trình `tính toán bên trong chỉ có coder` mới có thể sửa.
+### `Encapsulation (Tính đóng gói)` 
+- `Không cho phép` người sử dụng các đối tượng `thay đổi trạng thái bên trong một đối tượng`, mà `chỉ có phương thức của đối tượng có thể thay đổi chính nó`.
+- `Hai thuộc tính quan trọng` của tính đóng gói:
+  -  `Data protection`: giữ các member dữ liệu của nó ở `private`, `quyền truy cập và sửa đổi` các member này `bị hạn chế` để đảm bảo thao tác dữ liệu được `an toàn và bảo mật`.
+  -  `Information Hiding`: `ẩn các triển khai nội bộ` với bên ngoài, `chỉ class chứa nó mới truy cập được`.
+- `Dữ liệu và thông tin` sẽ được `đóng gói` lại, giúp các tác động bên ngoài một đối tượng `không thể làm thay đổi đối tượng` đó, nên sẽ `đảm bảo tính toàn 
+vẹn` của đối tượng, cũng như `giúp dấu đi các dữ liệu` thông tin cần được che giấu.
+```ruby
+class ToanHoc{
+    public:
+        void set(int x, int y);
+        void get();
+    private:
+        int a;
+        int b;
+};
 
+void ToanHoc::set(int x, int y){
+    a = x;
+    b = y;
+}
+
+void ToanHoc::get(){
+    cout << "a: " << a << endl;
+    cout << "b: " << b << endl;
+}
+
+ToanHoc th;
+th.set(12, 5);
+th.get();
+```
+</details>
+<details>
+    <summary>Template và Namespace</summary>
+    
 ### Template
 - Template (khuôn mẫu) là một từ khóa trong C++, và là một `kiểu dữ liệu trừu tượng` tổng quát hóa cho các kiểu dữ liệu int, float, double, bool...
 - Có `2` loại đó là `function template` và `class template`.
@@ -872,5 +919,48 @@ var1 tong(var1 a, var2 b){
 
 cout << "Tong: " << tong(12.5, 5) << endl;
 ```
+### Namespace
+- Namespace được sử dụng để `định nghĩa một phạm vi` nhằm mục đích `phân biệt` các hàm, lớp, biến, ... `cùng tên trong các thư viện khác nhau`. 
+- `Member` trong 1 namespace có thể là `class, struct, ...`
+- `Các member` trong namespace `phải khác tên nhau`, member trong `namespace A` có thể `trùng member` trong `namespace B`.
+```ruby
+namespace MemA {
+    int a = 10;
+    class Test{
+        public:
+            int x = 30;
+    };
+}
 
+namespace MemB {
+    int a = 20;
+}
+
+cout << MemA::a << endl;
+
+MemA::Test m;
+cout << m.x << endl;
+```
+Nếu như trong chương trình `chỉ khai báo 1 namespace` thôi thì có thể sử dụng `using namespace` để không phải gọi dài dòng như vd trên mà chương trình vẫn hiểu.
+```ruby
+namespace MemA {
+    int a = 10;
+    class Test{
+        public:
+            int x = 30;
+    };
+}
+
+namespace MemB {
+    int a = 20;
+}
+
+using namespace MemA;
+using namespace MemB;    // error: khi in biến a sẽ không biết là của MemA hay MemB
+
+cout << a << endl;
+
+Test m;
+cout << m.x << endl;
+```
 </details>
