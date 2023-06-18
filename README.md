@@ -440,9 +440,12 @@ https://github.com/nammesut/Embedded_Interview/blob/67e94c45c5a57d27f6937951e9b1
             <summary>Khái niệm</summary>
         
 ### Khái niệm
-`Class` thực chất là một kiểu dữ liệu do người lập trình định nghĩa. Class hay lớp là một mô tả trừu tượng (abstract) của nhóm các đối tượng (object) có cùng bản chất. Một class trong C++ sẽ có các đặc điểm sau:
-- Các thành phần dữ liệu (thuộc tính hay `property`).
-- Các phương thức (hàm thành phần hay `method`).
+- `Class` thực chất là một `kiểu dữ liệu do người dùng định nghĩa`.
+- Class hay lớp là một mô tả trừu tượng (abstract) của nhóm các `đối tượng (object)` có cùng bản chất.
+- Một class trong C++ sẽ có các đặc điểm sau:
+  
+  - Các `thành phần dữ liệu` (thuộc tính hay `property`).
+  - Các `phương thức` (hàm thành phần hay `method`).
 
 Ví dụ 1: Khai báo 1 class cơ bản
 ```ruby
@@ -469,9 +472,9 @@ person.fullname();
 <details>
     <summary>Method declaration (Định nghĩa phương thức)</summary>
     
-### Method declaration (Định nghĩa phương thức)
+### Định nghĩa phương thức
 Có `2` cách định nghĩa thi hành: 
-1. Định nghĩa thi hành trong lúc định nghĩa class
+1. Định nghĩa thi hành `trong lúc định nghĩa class`
 ```ruby
 class Person { 
     public: 
@@ -483,7 +486,7 @@ class Person {
         } 
 };
 ```
-2. Định nghĩa thi hành bên ngoài class
+2. Định nghĩa thi hành `bên ngoài class`
 ```ruby
 class Person { 
     public: 
@@ -503,10 +506,30 @@ void Person::fullname(){
 <details>
     <summary>Access modifiers (Phạm vi truy cập)</summary>
     
-### Access modifiers (Phạm vi truy cập)
+### Phạm vi truy cập
 Có `3` phạm vi truy cập trong C++ là `public`, `private` và `protected`.
-- `Public`: Các thuộc tính và phương thức thuộc public `đều có thể được truy cập trực tiếp` thông qua object của class đó hoặc `class kế thừa`, như `ví dụ 1`
-- `Private`: Các member thuộc private của `class nào` thì `chỉ có class đó mới truy cập` được, `class kế thừa cũng không thể truy cập`. Được sử dụng khi không muốn người khác có thể tùy ý gán giá trị
+- `Public`: Các thuộc tính và phương thức thuộc public `đều có thể được truy cập trực tiếp` thông qua `object của class đó` hoặc `class kế thừa`
+```ruby
+class Person { 
+    public: 
+        string firstName; // property 
+        string lastName;  // property 
+        int age;          // property 
+
+        void fullname() { // method 
+            cout << firstName << ' ' << lastName; 
+        } 
+};
+
+Person person;    //object
+
+person.firstName = "Nam"; 
+person.lastName = "Nguyen";
+ 
+person.fullname();
+```
+- `Private`: Các member thuộc private của `class nào` thì `chỉ có class đó mới truy cập` được, `class kế thừa cũng không thể truy cập`.
+- Được `sử dụng khi không muốn gán giá trị từ người dùng`.
 ```ruby
 class Person { 
     public:  
@@ -581,7 +604,7 @@ boy.out(12);
     <summary>Constructor</summary>
     
 ### Constructor
-`Constructor` hay hàm có `tên trùng` với tên của class đó,  nó sẽ được gọi ngay khi chúng ta khởi tạo một object. 
+`Constructor` hay hàm có `tên trùng` với tên của class đó,  nó sẽ `được gọi ngay` khi `khởi tạo một object`. 
 
 `Constructor` được viết trong phạm vi `public` và có thể `có input para`, `không input para` hoặc `input para mặc định`
 
@@ -748,7 +771,7 @@ void Person::output(int ages){
 Person ps;  // object
 ps.output(20);
 ```
-- Được sử dụng chung` cho tất cả các đối tượng được tạo ra từ class.
+- `Được sử dụng chung` cho tất cả các đối tượng được tạo ra từ class.
 ```ruby
 class Person { 
     public:  
@@ -773,7 +796,7 @@ Có `4 đặc tính` quan trọng trong OOP:
 
 ### `Inheritance (Tính kế thừa)`
 - Một class `có thể kế thừa các thuộc tính` của một class khác đã tồn tại trước đó.
-- Các kiểu kế thừa: `kế thừa public, `kế thừa private` và `kế thừa protected`.
+- Các kiểu kế thừa: `kế thừa public`, `kế thừa private` và `kế thừa protected`.
 - Class con kế thừa thuộc tính của class cha thì class con gọi là `subclass`, và class cha là `superclass`.
 ```ruby
 class Animal{
