@@ -959,3 +959,37 @@ Test m;
 cout << m.x << endl;
 ```
 </details>
+</details>
+
+<details>
+    <summary>C++: Vector và List</summary>
+        <details>
+            <summary>Vector</summary>
+            
+### Vector
+- Vector trong C++ là `một đối tượng` dùng `để chứa các đối tượng khác`, và các đối tượng được chứa này cũng `được lưu trữ một cách liên tiếp` trong vector.
+- Cũng là `mảng (array)`, bản thân vetor `cũng sử dụng cấp phát động` để cấp phát và do vector có thư viện có sẵn nên có thể dễ dàng sử dụng.
+- Nó hoàn toàn `có thể thay đổi size` trong `suốt quá trình làm việc` của chương trình.
+> Nếu `vector không được sử dụng phải thu hồi vùng nhớ`.
+### Modifiers
+- `push_back()`: Hàm `thêm một phần tử` vào `vị trí sau cùng`. Nếu `kiểu truyền vào không giống` với kiểu của vector thì sẽ `bị ném ra`.
+- `pop_back()`: Hàm `xóa phần tử cuối cùng`.
+```ruby
+vector<int> array;
+
+array.push_back(2);
+array.push_back(4);
+
+for(int i = 0; i<array.size();i++){
+    printf("%d\n", array[i]);
+}
+```
+- `begin()`: Hàm lấy `địa chỉ đầu tiên` của mảng vector.
+- `insert(i, value)`: Hàm `chèn phần tử mới` vào `vị trí i`. Có thể chuyển một số đối số thứ ba, đếm số lần phần tử được chèn vào trước vị trí được trỏ.
+```ruby
+array.push_back(2);
+array.push_back(4);
+array.insert(array.begin() + 1, 77);
+```
+</details>
+</details>
