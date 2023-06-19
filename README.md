@@ -974,6 +974,7 @@ cout << m.x << endl;
 ### Modifiers
 - `push_back()`: Hàm `thêm một phần tử` vào `vị trí sau cùng`. Nếu `kiểu truyền vào không giống` với kiểu của vector thì sẽ `bị ném ra`.
 - `pop_back()`: Hàm `xóa phần tử cuối cùng`.
+- `clear()`: Hàm `loại bỏ tất cả các phần tử` của vùng chứa vector. 
 ```ruby
 vector<int> array;
 
@@ -991,5 +992,6 @@ array.push_back(2);
 array.push_back(4);
 array.insert(array.begin() + 1, 77);
 ```
+- `assign()`: `gán giá trị mới` cho các phần tử vector bằng cách `thay thế các giá trị cũ`. 
 </details>
 </details>
