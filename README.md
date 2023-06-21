@@ -814,6 +814,25 @@ th.Tong(2, 4);       // = 6
 th.Tong(2, 4, 5);    // = 11
 cout << "Tong: " << th.Tong(12, 3.5) << endl;
 ```
+```ruby
+class ToanHoc{
+    public:
+        void Sosanh2So(int a, int b);
+        void Sosanh2So(double a, double b);
+};
+
+void ToanHoc::Sosanh2So(int a, int b){
+    cout << "Hai so nguyen" << endl;
+}
+
+void ToanHoc::Sosanh2So(double a, double b){
+    cout << "Hai so thuc" << endl;
+}
+
+ToanHoc th;
+th.Sosanh2So(1, 2);
+th.Sosanh2So(3.3, 5.3);
+```
 ### `Abstraction (Tính trừu tượng)` 
 - Là một khả năng mà chương trình `có thể bỏ qua sự phức tạp` bằng cách `tập trung vào cốt lõi của thông tin cần xử lý`.
 - `Gọi tên một phương thức` và `thu về kết quả xử lý`, mà `không cần biết làm cách nào` đối tượng đó thao tác trong class. 
@@ -830,7 +849,7 @@ Như chương trình tính `tổng a và b` thì người dùng `chỉ cần nh�
 ### `Encapsulation (Tính đóng gói)` 
 - `Không cho phép` người sử dụng các đối tượng `thay đổi trạng thái bên trong một đối tượng`, mà `chỉ có phương thức của đối tượng có thể thay đổi chính nó`.
 - `Hai thuộc tính quan trọng` của tính đóng gói:
-  -  `Data protection`: giữ các member dữ liệu của nó ở `private`, `quyền truy cập và sửa đổi` các member này `bị hạn chế` để đảm bảo thao tác dữ liệu được `an toàn và bảo mật`.
+  -  `Data protection`: giữ các member dữ liệu của nó ở `private` or `protected` `tùy vào tính năng` sử dụng, `quyền truy cập và sửa đổi` các member này `bị hạn chế` để đảm bảo thao tác dữ liệu được `an toàn và bảo mật`.
   -  `Information Hiding`: `ẩn các triển khai nội bộ` với bên ngoài, `chỉ class chứa nó mới truy cập được`.
 - `Dữ liệu và thông tin` sẽ được `đóng gói` lại, giúp các tác động bên ngoài một đối tượng `không thể làm thay đổi đối tượng` đó, nên sẽ `đảm bảo tính toàn 
 vẹn` của đối tượng, cũng như `giúp dấu đi các dữ liệu` thông tin cần được che giấu.
@@ -957,6 +976,37 @@ cout << a << endl;
 
 Test m;
 cout << m.x << endl;
+```
+</details>
+
+<details>
+    <summary>Hàm ảo</summary>
+    
+### Giải thích
+Hàm ảo là một cơ chế đặc biệt trong c++, khi 1 class cha (cơ sở) có 1 method và 1 class con (kế thừa) kế thừa class cha đó, nếu ở class con định nghĩa lại và chỉnh sửa method đó (được gọi là ghi đè) đồng thời ở class cha có 1 method liên quan đến class con tức là khi gọi 1 method khác của class cha và trong đó có lấy thông tin của class con đã định nghĩa lại thì sử dụng virtual, hàm ảo sẽ cho phép khi 1 object truy xuất đến member mà kế thừa từ class cha thì sẽ được overload load lại lấy method mới nhất của class con. Hiểu đơn giản, Virtual sẽ kiểm tra xem method ở class con có được ghi đè hay không, nếu có thì lấy method này không thì lấy ở class cha.
+```ruby
+class ToanHoc{
+    public:
+        virtual char *test(){
+            return (char*)"Hello";
+        }
+        void display(){
+            cout << test() << endl;
+        }
+};
+
+class kethua : public ToanHoc {
+    public:
+        char *test(){
+            return (char*)"New change";
+        }
+};
+
+ToanHoc th;
+th.display();
+
+kethua kt;
+kt.display();
 ```
 </details>
 </details>
