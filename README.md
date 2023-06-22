@@ -436,11 +436,16 @@ https://github.com/nammesut/Embedded_Interview/blob/67e94c45c5a57d27f6937951e9b1
     
 <details>
     <summary>C++: Class</summary>
-
+        <details>
+            <summary>Khái niệm</summary>
+        
 ### Khái niệm
-`Class` thực chất là một kiểu dữ liệu do người lập trình định nghĩa. Class hay lớp là một mô tả trừu tượng (abstract) của nhóm các đối tượng (object) có cùng bản chất. Một class trong C++ sẽ có các đặc điểm sau:
-- Các thành phần dữ liệu (thuộc tính hay `property`).
-- Các phương thức (hàm thành phần hay `method`).
+- `Class` thực chất là một `kiểu dữ liệu do người dùng định nghĩa`.
+- Class hay lớp là một mô tả trừu tượng (abstract) của nhóm các `đối tượng (object)` có cùng bản chất.
+- Một class trong C++ sẽ có các đặc điểm sau:
+  
+  - Các `thành phần dữ liệu` (thuộc tính hay `property`).
+  - Các `phương thức` (hàm thành phần hay `method`).
 
 Ví dụ 1: Khai báo 1 class cơ bản
 ```ruby
@@ -462,9 +467,14 @@ person.lastName = "Nguyen";
  
 person.fullname();
 ```
-### Method declaration (Định nghĩa phương thức)
+</details>
+
+<details>
+    <summary>Method declaration (Định nghĩa phương thức)</summary>
+    
+### Định nghĩa phương thức
 Có `2` cách định nghĩa thi hành: 
-1. Định nghĩa thi hành trong lúc định nghĩa class
+1. Định nghĩa thi hành `trong lúc định nghĩa class`
 ```ruby
 class Person { 
     public: 
@@ -476,7 +486,7 @@ class Person {
         } 
 };
 ```
-2. Định nghĩa thi hành bên ngoài class
+2. Định nghĩa thi hành `bên ngoài class`
 ```ruby
 class Person { 
     public: 
@@ -491,10 +501,35 @@ void Person::fullname(){
 }
 ```
 > Đối với method nên triển khai theo cách thứ 2 để dễ quản lý source.
-### Access modifiers (Phạm vi truy cập)
+</details>
+
+<details>
+    <summary>Access modifiers (Phạm vi truy cập)</summary>
+    
+### Phạm vi truy cập
 Có `3` phạm vi truy cập trong C++ là `public`, `private` và `protected`.
-- `Public`: Các thuộc tính và phương thức thuộc public đều có thể được truy cập trực tiếp thông qua object của class đó, như `ví dụ 1`
-- `Private`: Các member thuộc private thì chỉ có class mới truy cập được. Được sử dụng khi không muốn người khác có thể tùy ý gán giá trị
+- `Public`: Các thuộc tính và phương thức thuộc public `đều có thể được truy cập trực tiếp` thông qua `object của class đó` hoặc `class kế thừa`
+```ruby
+class Person { 
+    public: 
+        string firstName; // property 
+        string lastName;  // property 
+        int age;          // property 
+
+        void fullname() { // method 
+            cout << firstName << ' ' << lastName; 
+        } 
+};
+
+Person person;    //object
+
+person.firstName = "Nam"; 
+person.lastName = "Nguyen";
+ 
+person.fullname();
+```
+- `Private`: Các member thuộc private của `class nào` thì `chỉ có class đó mới truy cập` được, `class kế thừa cũng không thể truy cập`.
+- Được `sử dụng khi không muốn gán giá trị từ người dùng`.
 ```ruby
 class Person { 
     public:  
@@ -530,8 +565,46 @@ Person ps;  // object
 
 ps.ages(18);
 ```
+- `Protected`: các phương thức và thuộc tính `chỉ có thể truy cập` qua các `class kế thừa` nó hoặc `chính nó`.
+```ruby
+class Person { 
+    public:  
+        void output(int ages);       // method
+    protected:
+        int age;           // property 
+};
+
+/* Truy cập age từ class chính nó */
+void Person::output(int ages){
+    age = ages;
+    cout << age << endl;
+}
+
+/* Truy cập age qua class kế thừa */
+class Chill : public Person{
+    public:
+        void out(int ages);
+};
+
+void Chill::out(int ages){
+    age = ages;
+    cout << age << endl;
+}
+
+Person ps;  // object
+ps.output(20);
+ps.age = 20;    // error vì age thuộc protected nên chỉ truy cập qua class kế thừa hoặc chính nó
+
+Chill boy;
+boy.out(12);
+```
+</details>
+
+<details>
+    <summary>Constructor</summary>
+    
 ### Constructor
-`Constructor` hay hàm dựng là một hàm đặc biệt, nó sẽ được gọi ngay khi chúng ta khởi tạo một object. 
+`Constructor` hay hàm có `tên trùng` với tên của class đó,  nó sẽ `được gọi ngay` khi `khởi tạo một object`. 
 
 `Constructor` được viết trong phạm vi `public` và có thể `có input para`, `không input para` hoặc `input para mặc định`
 
@@ -602,4 +675,373 @@ Person ps(20);  // Hiển thị 20
 
 ps.output();
 ```
+</details>
+
+<details>
+    <summary>Overloading (Nạp chồng) và Overriding (Ghi đè)</summary>
+    
+### Overloading (Nạp chồng)
+Cho phép trong `cùng một class` có thể có `nhiều phương thức cùng tên` nhưng `khác nhau về số lượng tham số` hoặc `kiểu dữ liệu`.
+```ruby
+class ToanHoc{
+    public:
+        void Tong(int a, int b){
+            cout << "Tong: " << (a+b) << endl;
+        }
+
+        void Tong(int a, int b, int c){
+            cout << "Tong: " << (a+b+c) << endl;
+        }
+};
+
+ToanHoc th;
+th.Tong(2, 4);       // = 6
+th.Tong(2, 4, 5);    // = 11
+```
+Như ví dụ trên `hàm Tong` dùng để cộng hai số nguyên. Khi muốn cộng ba số nguyên không lại phải viết một hàm với tên khác (chẳng hạn Tong1) và truyền vào 3 số nguyên hay sao? Như vậy thì code sẽ trở nên phức tạp hơn trong khi hai hàm có cùng một mục đích là cộng các số nguyên lại với nhau. `Khi gọi hàm Tong` và truyền vào `số lượng tham số khác nhau` thì sẽ gọi tới `hàm có số lượng tham số tương ứng`.
+
+### Overriding (Ghi đè)
+Được sử dụng trong trường hợp `lớp con kế thừa từ lớp cha` và `muốn định nghĩa lại` một phương thức đã có mặt ở lớp cha, tuy nhiên phương thức ở lớp cha có thể phù hợp với lớp con này nhưng không phù hợp với lớp con khác, do đó lớp con cần ghi đè lại phương thức đó cho phù hợp.
+```ruby
+class Animal{
+    public:
+        void animalSound(){
+            cout << "Sound" << endl;
+        }   
+};
+
+class Dog : public Animal{
+    public:
+        void animalSound(){
+            cout << "Gau gau" << endl;
+        }
+};
+
+class Cat : public Animal{
+    public:
+        void animalSound(){
+            cout << "Meo meo" << endl;
+        }
+};
+
+Animal animal;
+animal.animalSound();
+
+Dog dog;
+dog.animalSound();
+
+Cat cat;
+cat.animalSound();
+```
+Như ví dụ class Animal có phương thức animalSound đại diện cho tiếng kêu của động vật. Class Dog và Cat kế thừa từ class Animal, nhưng chó và mèo có tiếng kêu khác nhau nên phải implement phương thức animalSound cho mỗi lớp khác nhau.
+
+### So sánh Overloading và Overriding
+| Overloading  | Overriding |
+| ------------ | -----------|
+| `Thêm` hành vi cho phương thức  | `Thay đổi` hành vi hiện tại của phương thức  |
+| `Có thể khác nhau` về số lượng và kiểu dữ liệu của tham số  | Số lượng và kiểu dữ liệu của tham số `phải giống nhau`  |
+| Xảy ra trong `cùng một class` | Xảy ra `ở 2 class có quan hệ kế thừa` |
+
+</details>
+    
+<details>
+    <summary>OOP</summary>
+    
+### Đặc tính của OOP
+Có `4 đặc tính` quan trọng trong OOP:
+
+### `Inheritance (Tính kế thừa)`
+- Một class `có thể kế thừa các thuộc tính` của một class khác đã tồn tại trước đó.
+- Các kiểu kế thừa: `kế thừa public`, `kế thừa private` và `kế thừa protected`.
+- Class con kế thừa thuộc tính của class cha thì class con gọi là `subclass`, và class cha là `superclass`.
+```ruby
+class Animal{
+    public:
+        void animalSound(){
+            cout << "Sound" << endl;
+        }   
+};
+
+class Dog : public Animal{
+    public:
+        void animalSound(){
+            cout << "Gau gau" << endl;
+        }
+};
+
+class Cat : public Animal{
+    public:
+        void animalSound(){
+            cout << "Meo meo" << endl;
+        }
+};
+
+Animal animal;
+animal.animalSound();
+
+Dog dog;
+dog.animalSound();
+
+Cat cat;
+cat.animalSound();
+```
+### `Polymorphism (Tính đa hình)` 
+- Là một khả năng làm cho một phương thức trong class `có thể đưa ra các kết quả hoàn toàn khác nhau`, tùy thuộc vào dữ liệu được xử lý.
+- `Kiểu trả về` hoặc `input para` `có thể khác nhau`.
+- `Tính đa hình` có thể được hiểu như `Overloading` và `Overriding`.
+```ruby
+class ToanHoc{
+    public:
+        void Tong(int a, int b);
+        void Tong(int a, int b, int c);
+        double Tong(int a, double b);
+};
+
+void ToanHoc::Tong(int a, int b){
+    cout << "Tong: " << (a+b) << endl;
+}
+
+void ToanHoc::Tong(int a, int b, int c){
+    cout << "Tong: " << (a+b+c) << endl;
+}
+
+double ToanHoc::Tong(int a, double b){
+    return (double)a + b;
+}
+
+ToanHoc th;
+th.Tong(2, 4);       // = 6
+th.Tong(2, 4, 5);    // = 11
+cout << "Tong: " << th.Tong(12, 3.5) << endl;
+```
+```ruby
+class ToanHoc{
+    public:
+        void Sosanh2So(int a, int b);
+        void Sosanh2So(double a, double b);
+};
+
+void ToanHoc::Sosanh2So(int a, int b){
+    cout << "Hai so nguyen" << endl;
+}
+
+void ToanHoc::Sosanh2So(double a, double b){
+    cout << "Hai so thuc" << endl;
+}
+
+ToanHoc th;
+th.Sosanh2So(1, 2);
+th.Sosanh2So(3.3, 5.3);
+```
+### `Abstraction (Tính trừu tượng)` 
+- Là một khả năng mà chương trình `có thể bỏ qua sự phức tạp` bằng cách `tập trung vào cốt lõi của thông tin cần xử lý`.
+- `Gọi tên một phương thức` và `thu về kết quả xử lý`, mà `không cần biết làm cách nào` đối tượng đó thao tác trong class. 
+```ruby
+class ToanHoc{
+    public:
+        void Nhap(int x, int y);
+        void Xuat();
+    private:
+        int tong(int a, int b);
+};
+```
+Như chương trình tính `tổng a và b` thì người dùng `chỉ cần nhập vào a b` và `kết quả trả về`, còn chương trình `tính toán bên trong chỉ có coder` mới có thể sửa.
+### `Encapsulation (Tính đóng gói)` 
+- `Không cho phép` người sử dụng các đối tượng `thay đổi trạng thái bên trong một đối tượng`, mà `chỉ có phương thức của đối tượng có thể thay đổi chính nó`.
+- `Hai thuộc tính quan trọng` của tính đóng gói:
+  -  `Data protection`: giữ các member dữ liệu của nó ở `private` or `protected` `tùy vào tính năng` sử dụng, `quyền truy cập và sửa đổi` các member này `bị hạn chế` để đảm bảo thao tác dữ liệu được `an toàn và bảo mật`.
+  -  `Information Hiding`: `ẩn các triển khai nội bộ` với bên ngoài, `chỉ class chứa nó mới truy cập được`.
+- `Dữ liệu và thông tin` sẽ được `đóng gói` lại, giúp các tác động bên ngoài một đối tượng `không thể làm thay đổi đối tượng` đó, nên sẽ `đảm bảo tính toàn 
+vẹn` của đối tượng, cũng như `giúp dấu đi các dữ liệu` thông tin cần được che giấu.
+```ruby
+class ToanHoc{
+    public:
+        void set(int x, int y);
+        void get();
+    private:
+        int a;
+        int b;
+};
+
+void ToanHoc::set(int x, int y){
+    a = x;
+    b = y;
+}
+
+void ToanHoc::get(){
+    cout << "a: " << a << endl;
+    cout << "b: " << b << endl;
+}
+
+ToanHoc th;
+th.set(12, 5);
+th.get();
+```
+</details>
+<details>
+    <summary>Static, Template và Namespace</summary>
+
+### Static
+- Là biến thành viên ở `dạng tĩnh` và `tồn tại duy nhất` trong class.
+- Do nó ở `dạng tĩnh` nên có thể `sử dụng trực tiếp` nó mà `không cần phải tạo đối tượng` từ class.
+
+> Static ở dạng tĩnh nên `phải được khởi tạo lần đầu` để lưu địa chỉ cố định.
+
+```ruby
+class Person { 
+    public:  
+        void output(int ages);       // method
+        static int age;           // property 
+};
+
+int Person::age;   // Khởi tạo static
+//int Person::age = 18;    // Có thể khởi tạo và gán value
+
+void Person::output(int ages){
+    age = ages;
+    cout << age << endl;
+}
+
+Person ps;  // object
+ps.output(20);
+```
+- `Được sử dụng chung` cho tất cả các đối tượng được tạo ra từ class.
+```ruby
+class Person { 
+    public:  
+        static int age;           // property 
+};
+
+int Person::age;    // Khởi tạo static
+
+Person ps1, ps2;  // object
+ps1.age = 20;
+ps2.age = 18;
+cout << ps1.age << endl;
+```
+Khai báo nhiều object, mỗi object các thuộc tính của nó đều khác nhau nhưng riêng `static thì chỉ có một` và nói ngắn gọn là `dùng chung một biến static`. 
+### Template
+- Template (khuôn mẫu) là một từ khóa trong C++, và là một `kiểu dữ liệu trừu tượng` tổng quát hóa cho các kiểu dữ liệu int, float, double, bool...
+- Có `2` loại đó là `function template` và `class template`.
+- Template giúp `định nghĩa tổng quát` cho hàm và lớp thay vì phải nạp chồng (overloading) cho từng hàm hay phương thức với những kiểu dữ liệu khác nhau.
+```ruby
+template <typename var1, typename var2>
+
+var1 tong(var1 a, var2 b){
+    return (var1)(a + b);
+}
+
+cout << "Tong: " << tong(12.5, 5) << endl;
+```
+### Namespace
+- Namespace được sử dụng để `định nghĩa một phạm vi` nhằm mục đích `phân biệt` các hàm, lớp, biến, ... `cùng tên trong các thư viện khác nhau`. 
+- `Member` trong 1 namespace có thể là `class, struct, ...`
+- `Các member` trong namespace `phải khác tên nhau`, member trong `namespace A` có thể `trùng member` trong `namespace B`.
+```ruby
+namespace MemA {
+    int a = 10;
+    class Test{
+        public:
+            int x = 30;
+    };
+}
+
+namespace MemB {
+    int a = 20;
+}
+
+cout << MemA::a << endl;
+
+MemA::Test m;
+cout << m.x << endl;
+```
+Nếu như trong chương trình `chỉ khai báo 1 namespace` thôi thì có thể sử dụng `using namespace` để không phải gọi dài dòng như vd trên mà chương trình vẫn hiểu.
+```ruby
+namespace MemA {
+    int a = 10;
+    class Test{
+        public:
+            int x = 30;
+    };
+}
+
+namespace MemB {
+    int a = 20;
+}
+
+using namespace MemA;
+using namespace MemB;    // error: khi in biến a sẽ không biết là của MemA hay MemB
+
+cout << a << endl;
+
+Test m;
+cout << m.x << endl;
+```
+</details>
+
+<details>
+    <summary>Hàm ảo</summary>
+    
+### Giải thích
+Hàm ảo là một cơ chế đặc biệt trong c++, khi 1 class cha (cơ sở) có 1 method và 1 class con (kế thừa) kế thừa class cha đó, nếu ở class con định nghĩa lại và chỉnh sửa method đó (được gọi là ghi đè) đồng thời ở class cha có 1 method liên quan đến class con tức là khi gọi 1 method khác của class cha và trong đó có lấy thông tin của class con đã định nghĩa lại thì sử dụng virtual, hàm ảo sẽ cho phép khi 1 object truy xuất đến member mà kế thừa từ class cha thì sẽ được overload load lại lấy method mới nhất của class con. Hiểu đơn giản, Virtual sẽ kiểm tra xem method ở class con có được ghi đè hay không, nếu có thì lấy method này không thì lấy ở class cha.
+```ruby
+class ToanHoc{
+    public:
+        virtual char *test(){
+            return (char*)"Hello";
+        }
+        void display(){
+            cout << test() << endl;
+        }
+};
+
+class kethua : public ToanHoc {
+    public:
+        char *test(){
+            return (char*)"New change";
+        }
+};
+
+ToanHoc th;
+th.display();
+
+kethua kt;
+kt.display();
+```
+</details>
+</details>
+
+<details>
+    <summary>C++: Vector và List</summary>
+        <details>
+            <summary>Vector</summary>
+            
+### Vector
+- Vector trong C++ là `một đối tượng` dùng `để chứa các đối tượng khác`, và các đối tượng được chứa này cũng `được lưu trữ một cách liên tiếp` trong vector.
+- Cũng là `mảng (array)`, bản thân vetor `cũng sử dụng cấp phát động` để cấp phát và do vector có thư viện có sẵn nên có thể dễ dàng sử dụng.
+- Nó hoàn toàn `có thể thay đổi size` trong `suốt quá trình làm việc` của chương trình.
+> Nếu `vector không được sử dụng phải thu hồi vùng nhớ`.
+### Modifiers
+- `push_back()`: Hàm `thêm một phần tử` vào `vị trí sau cùng`. Nếu `kiểu truyền vào không giống` với kiểu của vector thì sẽ `bị ném ra`.
+- `pop_back()`: Hàm `xóa phần tử cuối cùng`.
+- `clear()`: Hàm `loại bỏ tất cả các phần tử` của vùng chứa vector. 
+```ruby
+vector<int> array;
+
+array.push_back(2);
+array.push_back(4);
+
+for(int i = 0; i<array.size();i++){
+    printf("%d\n", array[i]);
+}
+```
+- `begin()`: Hàm lấy `địa chỉ đầu tiên` của mảng vector.
+- `insert(i, value)`: Hàm `chèn phần tử mới` vào `vị trí i`. Có thể chuyển một số đối số thứ ba, đếm số lần phần tử được chèn vào trước vị trí được trỏ.
+```ruby
+array.push_back(2);
+array.push_back(4);
+array.insert(array.begin() + 1, 77);
+```
+- `assign()`: `gán giá trị mới` cho các phần tử vector bằng cách `thay thế các giá trị cũ`. 
+</details>
 </details>
