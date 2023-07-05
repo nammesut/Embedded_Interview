@@ -3,26 +3,41 @@
 
 using namespace std;
 
-class Person { 
-    public:  
-        Person(int age = 18);     // constructor có input para mặc định
-        void output();       // method
-    private:
-        int age;           // property 
+class coso
+{
+    public:
+      virtual void show()
+      {
+                cout<<"\n  Hien thi lop co so:";
+      }
+      void display()
+      {
+              cout<<"\n  Trung bay lop co so:" ;
+      }
 };
-
-Person::Person(int age){    // Khởi tạo constructor
-    Person::age = age; 
-} 
-
-void Person::output(){
-    cout << age;
-}
+ 
+class kethua:public coso
+{
+   public:
+      void display()
+      {
+              cout<<"\n  Trung bay lop ke thua:";
+      }
+      void show()
+      {
+              cout<<"\n  Hien thi lop ke thua:";
+      }
+};
 
 int main()
 {
-    Person ps(20);  // object
+    coso cs;
+    cs.display();
+    cs.show();
 
-    ps.output();
+    kethua kt;
+    kt.display();
+    kt.show();
+
     return 0;
 }

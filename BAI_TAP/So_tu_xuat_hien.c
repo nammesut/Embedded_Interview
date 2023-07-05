@@ -9,7 +9,7 @@ int sizeArr(uint8_t arr[]){
 }
 
 int main(){
-    char arr[] = "Mot hai ba hai";
+    char arr[] = "Mot hai ba nam";
     char kq[] = "";
     
     int i, j=0, count=0;
@@ -25,7 +25,6 @@ int main(){
             i++;
             size_kq = sizeArr(kq);
             
-            printf("%s\n", kq);
             while(arr[x] != '\0'){
                 if(arr[x] == kq[y]){
                     y++;

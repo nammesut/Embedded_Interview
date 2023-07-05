@@ -50,7 +50,7 @@ bool HinhChuNhat::kiemTraHinhVuong(){
  
 int main()
 {
-    HinhChuNhat hcn(4, 4);
+    HinhChuNhat hcn(4.5, 4);
 
     cout << "Dien tich: " << hcn.tinhDienTich() << endl;
     cout << "Chu vi: " << hcn.tinhChuVi() << endl;
