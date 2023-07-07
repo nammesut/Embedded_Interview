@@ -21,6 +21,7 @@ class QuanLyMonAn {
         void manHinhQuanLy();
         void quanLyThemMon();
         void quanLySuaMon(QuanLyMonAn qlm);
+        void quanLyXoaMon();
         int thietLapSoBan();
 
         void manHinhNhanVien();
@@ -174,6 +175,23 @@ void QuanLyMonAn::quanLySuaMon(QuanLyMonAn qlm){
  			break;
     }while(1);
 
+}
+
+void QuanLyMonAn::quanLyXoaMon() {
+    int ID;
+
+    cout << "Nhap ID can xoa mon: ";
+    cin >> ID;
+
+    auto position = databaseQuanLy.begin();
+    for(auto item : databaseQuanLy) {
+        if(item.id == ID) {
+            cout << "Danh sach mon sau khi xoa bang ID " << ID << " !" << endl;
+            Database.erase(position);
+        }
+        position++;
+    }
+    hienThiDanhSach();
 }
     
 int QuanLyMonAn::thietLapSoBan(){
