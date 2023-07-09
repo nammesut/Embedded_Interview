@@ -239,10 +239,6 @@ void ThongTinBan::themMon(MonAn mMon, uint8_t uSoLuong) {
     cin >> TEN_MON;
     cout << "Nhap so luong: ";
     cin >> uSoLuong;
-
-    for(auto item : QuanLy::getDatabase()) {
-
-    }
 }
 
 /*--------------------------------Class Nhan vien----------------------------------*/
