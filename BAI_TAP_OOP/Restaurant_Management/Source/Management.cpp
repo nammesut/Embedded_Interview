@@ -3,7 +3,7 @@
 * Author: NGUYEN HOANG NAM
 * Date: 09/07/2023
 * Class: Management
-* Description: This is file to define function in Management class
+* Description: This is file to define method in Management class
 */
 
 #include <iostream>
@@ -20,6 +20,12 @@ typedef enum {
     LIST_DISHES,
     SET_NUM_OF_TABLES
 }tydeMenu;
+
+typedef enum {
+    BACK = 0,
+    UPDATE_NAME,
+    UPDATE_PRICE
+}tydeUpdate;
 
 /*
 * Function: Constructor
@@ -98,9 +104,9 @@ void Management::addDish(){
     string sDishName;
     uint32_t sDishPrice;
 
-    cout << "Input dish name: ";
+    cout << "Enter dish name: ";
     cin >> sDishName;
-    cout << "Input dish price: ";
+    cout << "Enter dish price: ";
     cin >> sDishPrice;
 
     Food fo(sDishName, sDishPrice);
@@ -119,33 +125,29 @@ void Management::updateDish() {
     int ID, key;
     string sDishName;
     uint32_t sDishPrice;
+    Menu mn;
 
-    cout << "Input the id: ";
+    cout << "Enter the id: ";
     cin >> ID;
 
     auto position = Database.begin();
     for(auto item : Database) {
         if(item.getId() == ID) {
-            do {
-            printf("\t***************** MENU *******************\n");
-            printf("\t**  1. Update name                      **\n");
-            printf("\t**  2. Update price                     **\n");
-            printf("\t**  0. Exit                             **\n");
-            printf("\t******************************************\n");
-            printf("Choose one of these options: ");
-            scanf("%d", &key);
-            } while(key != 1 && key != 2 && key != 0);
+            ENTER_INFORMATION(mn.showCommandUpdateDish(), &key, key < 0);
 
-            switch (key) {
-                case 1:
-                    cout << "Nhap ten: ";
+            switch ((tydeUpdate)key) {
+                case BACK:
+                    return;
+                case UPDATE_NAME:
+                    cout << "Enter the name: ";
                     cin >> sDishPrice;
                     break;
-                case 2:
-                    cout << "Nhap gia: ";
+                case UPDATE_PRICE:
+                    cout << "Enter the price: ";
                     cin >> sDishPrice;
                     break;
                 default:
+                    printf("This option isn't had! Try again!\n");
                     break;
             }
         }
@@ -166,7 +168,7 @@ void Management::updateDish() {
 void Management::removeDish() {
     int ID;
 
-    cout << "Input the ID: ";
+    cout << "Enter the ID: ";
     cin >> ID;
 
     auto position = Database.begin();
@@ -209,7 +211,7 @@ void Management::listOfDishes() {
 void Management::setNumOfTable() {
     int iNumOfTables;
 
-    cout << "Input the number of tables: ";
+    cout << "Enter the number of tables: ";
     cin >> iNumOfTables;
     numOfTable = iNumOfTables;
     cout << "Has set the number of tables!" << endl;

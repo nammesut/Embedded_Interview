@@ -1,31 +1,48 @@
+/*
+* File: Employee.cpp
+* Author: NGUYEN HOANG NAM
+* Date: 09/07/2023
+* Class: Employee
+* Description: This is file to define method in Employee class
+*/
+
 #include "Employee.hpp"
 #include "Table_Info.hpp"
 
 using namespace std;
 
-NhanVien::NhanVien(list<Food> lDatabase, uint8_t uSoBan) {
-    int SO_BAN;
+/*
+* Function: Constructor
+* Description: This constructor will be implemented once it be called
+* Input:
+*   _database: database of the dishes
+*   _amount: amount of the tables
+* Output:
+*   return: None
+*/
+Employee::Employee(list<Food> _database, uint8_t _amount) {
+    int AMOUNT_OF_TABLES;
 
-    Database.assign(lDatabase.begin(), lDatabase.end());
+    database.assign(_database.begin(), _database.end());
     
-    printf("\n\t%7s\t", "So ban");
-    for(int i = 1; i <= uSoBan; i++) {
+    printf("\n\t%7s\t", "Amount of the tables");
+    for(int i = 1; i <= _amount; i++) {
         printf("\t%3d", i);
-        ThongTinBan ban(i, false);
+        TableInfo tb(i, false);
 
-        Database_Ban.push_back(ban);
+        databaseTable.push_back(tb);
     }
 
-    printf("\n\t%7s\t", "Trang thai");
-    for(auto item : Database_Ban) {
-        if(item.getTrangThai() == false)
+    printf("\n\t%7s\t", "Status");
+    for(auto item : databaseTable) {
+        if(item.getStatus() == false)
             printf("\t%3c", 'O');
         else
             printf("\t%3c", 'X');
     }
 
-    cout << "Chon ban: ";
-    cin >> SO_BAN;
+    cout << "Choose the table: ";
+    cin >> _amount;
 
 
 

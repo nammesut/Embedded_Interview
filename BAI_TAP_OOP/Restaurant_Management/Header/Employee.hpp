@@ -1,3 +1,10 @@
+/*
+* File: Employee.hpp
+* Author: NGUYEN HOANG NAM
+* Date: 09/07/2023
+* Description: This is library file for declare Employee class
+*/
+
 #ifndef EMPLOYEE_HPP
 #define EMPLOYEE_HPP
 #include <iostream>
@@ -6,13 +13,12 @@
 #include "Table_Info.hpp"
 using namespace std;
 
-class NhanVien {
+class Employee {
     private:
-        list<Food> Database;
-        list<ThongTinBan> Database_Ban;
+        list<Food> database;
+        list<TableInfo> databaseTable;
     public:
-        NhanVien(list<Food> lDatabase, uint8_t uSoBan);
-        void hienThiAllBan(uint8_t uSoBan);
+        Employee(list<Food> _database, uint8_t _amount);
 };
 
 #endif

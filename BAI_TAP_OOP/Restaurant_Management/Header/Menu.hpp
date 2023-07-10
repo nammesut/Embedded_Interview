@@ -30,5 +30,6 @@ class Menu {
         void showCommandMenu();
         void showCommandManagement();
         void showCommandEmployee();
+        void showCommandUpdateDish();
 };
 #endif

@@ -3,7 +3,7 @@
 * Author: NGUYEN HOANG NAM
 * Date: 09/07/2023
 * Class: Food
-* Description: This is file to define function in Food class
+* Description: This is file to define method in Food class
 */
 
 #include "Food.hpp"
